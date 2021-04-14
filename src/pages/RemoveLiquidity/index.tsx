@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
@@ -44,7 +44,7 @@ import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hook
 
 const OutlineCard = styled.div`
   padding: 17px 24px;
-  background-color: #F5F7FF;
+  background-color: #f5f7ff;
 `
 
 const Body = styled.div`
@@ -527,21 +527,28 @@ export default function RemoveLiquidity({
               <OutlineCard>
                 <AutoColumn gap="8px">
                   <RowBetween>
-                    <Text style={{color:"#8990A5", fontWeight:500, letterSpacing:"0.3px", fontSize: "16px"}}>Amount</Text>
+                    <Text style={{ color: '#8990A5', fontWeight: 500, letterSpacing: '0.3px', fontSize: '16px' }}>
+                      Amount
+                    </Text>
                     <ClickableText
                       onClick={() => {
                         setShowDetailed(!showDetailed)
                       }}
-                      style={{fontSize: '14px', fontWeight: 700, letterSpacing: '1px'}}
+                      style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px' }}
                     >
                       <Flex alignItems="center">
                         {showDetailed ? 'Simple' : 'Detailed'}
-                        <ChevronDown width="16px" height="16px"/>
+                        <ChevronDown width="16px" height="16px" />
                       </Flex>
                     </ClickableText>
                   </RowBetween>
                   <Flex justifyContent="start">
-                    <Text fontSize="40px" style={{color:"#0B1359", fontWeight:700, letterSpacing:"0.3px", lineHeight: '1'}}>{formattedAmounts[Field.LIQUIDITY_PERCENT]}%</Text>
+                    <Text
+                      fontSize="40px"
+                      style={{ color: '#0B1359', fontWeight: 700, letterSpacing: '0.3px', lineHeight: '1' }}
+                    >
+                      {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
+                    </Text>
                   </Flex>
                   {!showDetailed && (
                     <>
@@ -549,20 +556,35 @@ export default function RemoveLiquidity({
                         <Slider value={innerLiquidityPercentage} onChange={setInnerLiquidityPercentage} />
                       </Flex>
                       <Flex justifyContent="space-between">
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')} style={{height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold'}}>
+                        <Button
+                          variant="tertiary"
+                          size="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
+                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
+                        >
                           25%
                         </Button>
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')} style={{height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold'}}>
+                        <Button
+                          variant="tertiary"
+                          size="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
+                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
+                        >
                           50%
                         </Button>
-                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')} style={{height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold'}}>
+                        <Button
+                          variant="tertiary"
+                          size="sm"
+                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
+                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
+                        >
                           75%
                         </Button>
                         <Button
                           variant="tertiary"
                           size="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
-                          style={{height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold'}}
+                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
                         >
                           Max
                         </Button>
@@ -580,22 +602,26 @@ export default function RemoveLiquidity({
                   </StyledTextAddIcon>
                 </ColumnCenter>
                 <Body>
-                  <OutlineCard style={{background: 'none', padding: '0 24px'}}>
+                  <OutlineCard style={{ background: 'none', padding: '0 24px' }}>
                     <AutoColumn>
-                      <RowBetween style={{padding: '10px 16px'}}>
-                        <Text fontSize="14px" style={{fontWeight:500}}>{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
+                      <RowBetween style={{ padding: '10px 16px' }}>
+                        <Text fontSize="14px" style={{ fontWeight: 500 }}>
+                          {formattedAmounts[Field.CURRENCY_A] || '-'}
+                        </Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyA} style={{ marginRight: '12px' }} />
-                          <Text fontSize="14px" id="remove-liquidity-tokena-symbol" style={{fontWeight:500}}>
+                          <Text fontSize="14px" id="remove-liquidity-tokena-symbol" style={{ fontWeight: 500 }}>
                             {currencyA?.symbol}
                           </Text>
                         </RowFixed>
                       </RowBetween>
-                      <RowBetween style={{backgroundColor: '#F4F5FA', padding: '10px 16px', borderRadius: '6px'}}>
-                        <Text fontSize="14px" style={{fontWeight:500}}>{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
+                      <RowBetween style={{ backgroundColor: '#F4F5FA', padding: '10px 16px', borderRadius: '6px' }}>
+                        <Text fontSize="14px" style={{ fontWeight: 500 }}>
+                          {formattedAmounts[Field.CURRENCY_B] || '-'}
+                        </Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyB} style={{ marginRight: '12px' }} />
-                          <Text fontSize="14px" id="remove-liquidity-tokenb-symbol" style={{fontWeight:500}}>
+                          <Text fontSize="14px" id="remove-liquidity-tokenb-symbol" style={{ fontWeight: 500 }}>
                             {currencyB?.symbol}
                           </Text>
                         </RowFixed>
@@ -682,14 +708,14 @@ export default function RemoveLiquidity({
               {pair && (
                 <div style={{ padding: '32px 0' }}>
                   <Flex justifyContent="space-between" mb="8px">
-                    <Text style={{color: '#8990A5', fontSize: '14px', fontWeight: 500}}>Price:</Text>
-                    <Text style={{color: '#0B1359', fontSize: '14px', fontWeight: 500}}>
+                    <Text style={{ color: '#8990A5', fontSize: '14px', fontWeight: 500 }}>Price:</Text>
+                    <Text style={{ color: '#0B1359', fontSize: '14px', fontWeight: 500 }}>
                       1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
                     </Text>
                   </Flex>
                   <Flex justifyContent="space-between">
                     <div />
-                    <Text style={{color: '#0B1359', fontSize: '14px', fontWeight: 500}}>
+                    <Text style={{ color: '#0B1359', fontSize: '14px', fontWeight: 500 }}>
                       1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
                     </Text>
                   </Flex>

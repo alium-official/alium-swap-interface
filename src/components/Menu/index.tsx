@@ -43,7 +43,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
       items: [
         {
           label: 'Overview',
-          href: process.env.REACT_APP_INFO_URL,
+          href: process.env.REACT_APP_INFO_URL as string,
         },
         {
           label: 'Tokens',
@@ -87,8 +87,6 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
   const explorerName = getExplorerName(chainId as ChainId)
   const explorerLink = getExplorerLink(chainId as ChainId, account as string, 'address')
   const useBalance = async () => {
-    // const bal = useCurrencyBalance(account as string, ETHER)
-    // return bal?.toSignificant(6);
     const result = await useCurrencyBalance(account as string, ETHER)
     return result
   }

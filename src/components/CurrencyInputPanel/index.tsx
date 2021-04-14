@@ -13,12 +13,12 @@ import { Input as NumericalInput } from '../NumericalInput'
 import { useActiveWeb3React } from '../../hooks'
 import { TranslateString } from '../../utils/translateTextHelpers'
 
-const InputRow = styled.div<{ selected: boolean, customHeight?: number }>`
+const InputRow = styled.div<{ selected: boolean; customHeight?: number }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.4rem 0.5rem 0.4rem 1rem' : '0.4rem 0.75rem 0.4rem 1rem')};
-  ${({customHeight})=>customHeight ? `height: ${customHeight}px;` : ''}
+  ${({ customHeight }) => (customHeight ? `height: ${customHeight}px;` : '')}
 `
 
 const CurrencySelect = styled.button<{ selected: boolean }>`
@@ -119,7 +119,7 @@ export default function CurrencyInputPanel({
   id,
   showCommonBases,
   currencyList,
-                                             customHeight
+  customHeight,
 }: CurrencyInputPanelProps) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -154,7 +154,11 @@ export default function CurrencyInputPanel({
             </RowBetween>
           </LabelRow>
         )}
-        <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} selected={disableCurrencySelect} customHeight={customHeight}>
+        <InputRow
+          style={hideInput ? { padding: '0', borderRadius: '8px' } : {}}
+          selected={disableCurrencySelect}
+          customHeight={customHeight}
+        >
           {!hideInput && (
             <>
               <NumericalInput

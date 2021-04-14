@@ -13,7 +13,7 @@ const _binanceChainListener = async () =>
 
         resolve()
       },
-    }),
+    })
   )
 
 const useEagerConnect = () => {
@@ -24,7 +24,7 @@ const useEagerConnect = () => {
     const params = new URLSearchParams(window.location.search)
     const chainId = params.get('network')
 
-    if (connectorId === ConnectorNames.BSC && (chainId === "128" || chainId === "256")) {
+    if (connectorId === ConnectorNames.BSC && (chainId === '128' || chainId === '256')) {
       return
     }
 

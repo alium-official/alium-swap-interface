@@ -19,16 +19,16 @@ const StyledRangeInput = styled.input<{ size: number }>`
     -webkit-appearance: none;
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 6px 12px rgba(185, 189, 208, 0.4);
     border-radius: 16px;
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);
     color: ${({ theme }) => theme.colors.invertedContrast};
-    
+
     &::before {
-      content: " ";
+      content: ' ';
       width: 10px;
       height: 10px;
       position: absolute;
@@ -73,12 +73,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
   }
 
   &::-webkit-slider-runnable-track {
-    background: #24BA7B;
+    background: #24ba7b;
     height: 2px;
   }
 
   &::-moz-range-track {
-    background: #24BA7B;
+    background: #24ba7b;
     height: 2px;
   }
 

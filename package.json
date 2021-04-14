@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@aliumswap/sdk": "^1.1.10",
-    "@aliumswap/uikit": "0.11.41",
+    "@aliumswap/uikit": "0.11.44",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",

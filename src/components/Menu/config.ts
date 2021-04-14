@@ -102,10 +102,10 @@ const config: MenuEntry[] = [
         label: 'Github',
         href: 'https://github.com/Aliumswap',
       },
-      {
-        label: 'Docs',
-        href: 'https://aliumswap.gitbook.io/alium-finance/',
-      },
+      // {
+      //   label: 'Docs',
+      //   href: 'https://docs.pancakeswap.finance',
+      // },
       {
         label: 'Blog',
         href: 'https://medium.com/@aliumswap',

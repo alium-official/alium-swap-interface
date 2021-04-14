@@ -182,15 +182,15 @@ export default function Pool() {
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
   const getButton = () => {
     return (
-      // chainId === 56 || chainId === 128 ? 
+      // chainId === 56 || chainId === 128 ?
       // (
       //   <Button disabled style={{ background: "#CBC8EE" }} id="join-pool-button" as={Link} to="/add/ETH">
       //     {t('addLiquidity')}
       //   </Button>
       // ) : (
-        <Button  id="join-pool-button" as={Link} to="/add/ETH">
-          {t('addLiquidity')}
-        </Button>
+      <Button id="join-pool-button" as={Link} to="/add/ETH">
+        {t('addLiquidity')}
+      </Button>
       // )
     )
   }
@@ -200,9 +200,7 @@ export default function Pool() {
       <AppBody>
         <PageHeader title={t('mainMenu.liquidity')} description={t('liquidityDescription')} />
         <StyledCardBody singleBlock={allV2PairsWithLiquidity?.length > 0}>
-          {!account ? (
-            <UnlockButton />
-          ) : getButton()}
+          {!account ? <UnlockButton /> : getButton()}
           <StyledRightSide>
             {allV2PairsWithLiquidity?.length === 0 && (
               <>

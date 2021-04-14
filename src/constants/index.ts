@@ -62,7 +62,13 @@ export const TEST_BSC_WETH = new Token(
 )
 
 //  HECO Mainnet Basic Tokens
-export const HECO_USDT = new Token(ChainId.HECOMAINNET, '0xa71edc38d189767582c38a3145b5873052c3e47a', 18, 'USDT', 'Tether USD')
+export const HECO_USDT = new Token(
+  ChainId.HECOMAINNET,
+  '0xa71edc38d189767582c38a3145b5873052c3e47a',
+  18,
+  'USDT',
+  'Tether USD'
+)
 export const HECO_ETH = new Token(
   ChainId.HECOMAINNET,
   '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd',
@@ -127,7 +133,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT, ETH],
   [ChainId.BSCTESTNET]: [TEST_BSC_ALM, TEST_BSC_DAI, TEST_BSC_XXX1, TEST_BSC_USDT, TEST_BSC_WETH],
-  [ChainId.HECOMAINNET]: [...WETH_ONLY[ChainId.HECOTESTNET], HECO_USDT, HECO_ETH],
+  [ChainId.HECOMAINNET]: [...WETH_ONLY[ChainId.HECOMAINNET], HECO_USDT, HECO_ETH],
   [ChainId.HECOTESTNET]: [TEST_HECO_DAI, TEST_HECO_USDT, TEST_HECO_USDC],
 }
 
@@ -154,11 +160,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
     TEST_BSC_DAI,
     TEST_BSC_WETH,
   ],
-  [ChainId.HECOMAINNET]: [
-    ...WETH_ONLY[ChainId.HECOMAINNET],
-    HECO_USDT, 
-    HECO_ETH
-  ],
+  [ChainId.HECOMAINNET]: [...WETH_ONLY[ChainId.HECOMAINNET], HECO_USDT, HECO_ETH],
   [ChainId.HECOTESTNET]: [
     ...WETH_ONLY[ChainId.HECOTESTNET],
     TEST_HECO_DAI,
@@ -191,9 +193,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [TEST_BSC_ALM, TEST_BSC_WBNB],
     [TEST_BSC_USDT, TEST_BSC_DAI],
   ],
-  [ChainId.HECOMAINNET]: [
-    [HECO_USDT, HECO_ETH]
-  ],
+  [ChainId.HECOMAINNET]: [[HECO_USDT, HECO_ETH]],
   [ChainId.HECOTESTNET]: [
     [TEST_HECO_DAI, TEST_HECO_USDT],
     [TEST_HECO_DAI, TEST_HECO_USDC],
