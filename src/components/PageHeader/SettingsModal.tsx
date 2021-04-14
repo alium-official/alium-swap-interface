@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from '@aliumswap/uikit-beta'
+import { Modal } from '@aliumswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import SlippageToleranceSetting from './SlippageToleranceSetting'

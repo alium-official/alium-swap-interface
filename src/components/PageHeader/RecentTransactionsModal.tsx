@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Text, Modal, Button } from '@aliumswap/uikit-beta'
+import { CheckmarkCircleIcon, ErrorIcon, Flex, LinkExternal, Text, Modal, Button } from '@aliumswap/uikit'
 import styled from 'styled-components'
 
 import { useActiveWeb3React } from 'hooks'
-import { getBscScanLink } from 'utils'
+import { getExplorerLink } from 'utils'
 import { isTransactionRecent, useAllTransactions } from 'state/transactions/hooks'
 import { TransactionDetails } from 'state/transactions/reducer'
 import Loader from 'components/Loader'
@@ -71,9 +71,7 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTransac
         )}
         {account && chainId && sortedRecentTransactions.length === 0 && (
           <Flex justifyContent="center" flexDirection="column" alignItems="center">
-            <Text mb="8px">
-              {t('noRecentTransactions')}
-            </Text>
+            <Text mb="8px">{t('noRecentTransactions')}</Text>
             <Button variant="secondary" size="md" onClick={onDismiss} mt="10px">
               {t('close')}
             </Button>
@@ -89,7 +87,7 @@ const RecentTransactionsModal = ({ onDismiss = defaultOnDismiss }: RecentTransac
               return (
                 <Flex key={hash} alignItems="center" justifyContent="space-between" mb="16px" style={{ width: '100%' }}>
                   <LinkExternal
-                    href={getBscScanLink(chainId, hash, 'transaction')}
+                    href={getExplorerLink(chainId, hash, 'transaction')}
                     color="#0B1359"
                     style={{ width: '100%', justifyContent: 'space-between', paddingRight: '4px' }}
                   >

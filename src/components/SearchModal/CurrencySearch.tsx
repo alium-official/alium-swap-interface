@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, RefObject, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Currency, ETHER, Token } from '@aliumswap/sdk'
-import { Text, CloseIcon, IconButton } from '@aliumswap/uikit-beta'
+import { Text, CloseIcon, IconButton } from '@aliumswap/uikit'
 
 import { useTranslation } from 'react-i18next'
 import { FixedSizeList } from 'react-window'
@@ -84,7 +84,7 @@ export function CurrencySearch({
   const showETH: boolean = useMemo(() => {
     const s = searchQuery.toLowerCase().trim()
     if (currencyList) return false
-    return s === '' || s === 'e' || s === 'et' || s === 'eth'
+    return s === '' || s === 'b' || s === 'bn' || s === 'bnb'
   }, [currencyList, searchQuery])
 
   const tokenComparator = useTokenComparator(invertSearchOrder)
@@ -137,7 +137,7 @@ export function CurrencySearch({
     (e: KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         const s = searchQuery.toLowerCase().trim()
-        if (s === 'eth') {
+        if (s === 'bnb') {
           handleCurrencySelect(ETHER)
         } else if (filteredSortedTokens.length > 0) {
           if (
@@ -160,9 +160,7 @@ export function CurrencySearch({
         <RowBetween>
           <Text style={{ display: 'flex', alignItems: 'center', fontSize: '18px' }} bold>
             {t('selectToken')}
-            <QuestionHelper
-              text='Find a token by searching for its name or symbol or by pasting its address below.'
-            />
+            <QuestionHelper text="Find a token by searching for its name or symbol or by pasting its address below." />
           </Text>
           <IconButton buttonType="close" buttonSize="40px" onClick={onDismiss}>
             <CloseIcon />

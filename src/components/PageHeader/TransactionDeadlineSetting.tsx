@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
-import { Input, Text } from '@aliumswap/uikit-beta'
+import { Input, Text } from '@aliumswap/uikit'
 import { useTranslation } from 'react-i18next'
 import { useUserDeadline } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'

@@ -4,8 +4,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@aliumswap/sdk'
-import ROUTER_ABI from 'constants/router'
-import { ROUTER_ADDRESS } from '../constants'
+import { ROUTER_ADDRESS, ROUTER_ABI } from 'config/contracts'
 import { TokenAddressMap } from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
@@ -17,13 +16,35 @@ export function isAddress(value: any): string | false {
   }
 }
 
-const BSCSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  56: '',
-  97: 'testnet.',
+const EXPLORER_PREFIXES: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: '',
+  [ChainId.BSCTESTNET]: 'testnet.',
+  [ChainId.HECOMAINNET]: '',
+  [ChainId.HECOTESTNET]: 'testnet.',
 }
 
-export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
-  const prefix = `https://${BSCSCAN_PREFIXES[chainId] || BSCSCAN_PREFIXES[56]}bscscan.com`
+const EXPLORER_URLS: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: 'bscscan.com',
+  [ChainId.BSCTESTNET]: 'bscscan.com',
+  [ChainId.HECOMAINNET]: 'hecoinfo.com',
+  [ChainId.HECOTESTNET]: 'hecoinfo.com',
+}
+
+const EXPLORER_NAMES: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: 'BscScan',
+  [ChainId.BSCTESTNET]: 'BscScan',
+  [ChainId.HECOMAINNET]: 'HecoScan',
+  [ChainId.HECOTESTNET]: 'HecoScan',
+}
+
+export const getExplorerName = (chainId: ChainId) => {
+  const name = EXPLORER_NAMES[chainId]
+  return name
+}
+
+export function getExplorerLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
+  const url = EXPLORER_URLS[chainId] || EXPLORER_URLS[ChainId.MAINNET]
+  const prefix = `https://${EXPLORER_PREFIXES[chainId] || EXPLORER_PREFIXES[ChainId.MAINNET]}${url}`
 
   switch (type) {
     case 'transaction': {
@@ -88,8 +109,8 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS, ROUTER_ABI, library, account)
+export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
+  return getContract(chainId && ROUTER_ADDRESS[chainId], ROUTER_ABI, library, account)
 }
 
 export function escapeRegExp(string: string): string {

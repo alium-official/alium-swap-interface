@@ -47,11 +47,11 @@ const StyledPopupContainer = styled.div`
   right: 0;
   top: 97px;
   z-index: 10000;
-  > div:last-child > div{
+  > div:last-child > div {
     display: flex;
     flex-direction: column;
   }
-   > div:last-child > div > div:not(:last-child) {
+  > div:last-child > div > div:not(:last-child) {
     margin-bottom: 5px;
   }
 `

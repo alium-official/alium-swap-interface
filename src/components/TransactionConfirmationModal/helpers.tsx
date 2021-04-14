@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Heading, IconButton, CloseIcon } from '@aliumswap/uikit-beta'
+import { Heading, IconButton, CloseIcon } from '@aliumswap/uikit'
 
 import { AutoColumn, ColumnCenter } from '../Column'
 

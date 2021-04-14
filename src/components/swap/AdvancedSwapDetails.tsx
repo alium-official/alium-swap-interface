@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trade, TradeType } from '@aliumswap/sdk'
-import { Card, CardBody, Text } from '@aliumswap/uikit-beta'
+import { Card, CardBody, Text } from '@aliumswap/uikit'
 import styled from 'styled-components'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
@@ -37,7 +37,7 @@ const StyledTradeSummary = styled.div`
   > div > div > div > div > div {
     font-size: 14px;
   }
-  
+
   @media screen and (max-width: 530px) {
     > div > div > div > div > div {
       font-size: 11px;
@@ -76,7 +76,7 @@ const StyledRouteContainer = styled.div`
 const StyledText = styled(Text)`
   font-size: 14px;
   @media screen and (max-width: 530px) {
-    font-size: 11px
+    font-size: 11px;
   }
 `
 
@@ -145,7 +145,9 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <StyledRouteContainer>
               <AutoColumn style={{ padding: '0 24px' }}>
                 <RowFixed>
-                  <Text fontSize="14px" bold>Route</Text>
+                  <Text fontSize="14px" bold>
+                    Route
+                  </Text>
                   <QuestionHelper text="Routing through these tokens resulted in the best price for your trade." />
                 </RowFixed>
                 <SwapRoute trade={trade} />

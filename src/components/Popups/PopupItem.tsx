@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect } from 'react'
 import { useSpring } from 'react-spring/web'
-import { CloseIcon } from '@aliumswap/uikit-beta'
-import styled  from 'styled-components'
+import { CloseIcon } from '@aliumswap/uikit'
+import styled from 'styled-components'
 import { animated } from 'react-spring'
 import { PopupContent } from '../../state/application/actions'
 import { useRemovePopup } from '../../state/application/hooks'
 import ListUpdatePopup from './ListUpdatePopup'
 import TransactionPopup from './TransactionPopup'
-
 
 export const StyledClose = styled(CloseIcon)`
   position: absolute;
@@ -20,7 +19,7 @@ export const StyledClose = styled(CloseIcon)`
     cursor: pointer;
   }
 `
-export const Popup = styled.div<{type?: boolean}>`
+export const Popup = styled.div<{ type?: boolean }>`
   display: inline-block;
   width: 100%;
   padding: 1em;
@@ -31,7 +30,7 @@ export const Popup = styled.div<{type?: boolean}>`
   padding-right: 35px;
   overflow: hidden;
   max-width: 360px;
-  border-left: 6px solid ${({type})=>type ? '#1EA76D' : '#FF4D00'};
+  border-left: 6px solid ${({ type }) => (type ? '#1EA76D' : '#FF4D00')};
 
   ${({ theme }) => theme.mediaQueries.sm} {
     min-width: 290px;
@@ -72,12 +71,12 @@ export default function PopupItem({
   }, [removeAfterMs, removeThisPopup])
 
   let popupContent
-  let type;
+  let type
   if ('txn' in content) {
     const {
       txn: { hash, success, summary },
     } = content
-    type = success;
+    type = success
     popupContent = <TransactionPopup hash={hash} success={success} summary={summary} />
   } else if ('listUpdate' in content) {
     const {

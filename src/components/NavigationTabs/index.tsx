@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, Flex, ArrowBackIcon } from '@aliumswap/uikit-beta'
+import { ButtonMenu, ButtonMenuItem, Flex, ArrowBackIcon } from '@aliumswap/uikit'
 import { darken } from 'polished'
 import { NavLink, Link as HistoryLink } from 'react-router-dom'
 import { RowBetween } from 'components/Row'

@@ -1,14 +1,9 @@
 import { TokenAmount, Pair, Currency } from '@aliumswap/sdk'
 import { useMemo } from 'react'
-// import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
-import { Interface } from '@ethersproject/abi'
-import { IPAIR_ABI } from 'constants/pair'
+import { PAIR_INTERFACE } from 'config/interfaces'
 import { useActiveWeb3React } from '../hooks'
-
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
-
-const PAIR_INTERFACE = new Interface(IPAIR_ABI)
 
 export enum PairState {
   LOADING,

@@ -1,14 +1,14 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Pair } from '@aliumswap/sdk'
-import { Button, CardBody, Text } from '@aliumswap/uikit-beta'
+import { Button, CardBody, Text } from '@aliumswap/uikit'
 
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'
 import Question from 'components/QuestionHelper'
 import FullPositionCard from 'components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from 'state/wallet/hooks'
-import { TYPE } from 'components/Shared'
+import { StyledInternalLink, TYPE } from 'components/Shared'
 import { LightCard } from 'components/Card'
 import { AutoColumn } from 'components/Column'
 
@@ -27,7 +27,7 @@ const CardWrapper = styled.div`
   width: 100%;
 `
 
-const StyledCardBody = styled.div<{singleBlock?: boolean}>`
+const StyledCardBody = styled.div<{ singleBlock?: boolean }>`
   display: flex;
   justify-content: space-between;
   padding: 34px 24px 32px 24px;
@@ -35,15 +35,15 @@ const StyledCardBody = styled.div<{singleBlock?: boolean}>`
   // max-width: 48%;
   height: 114px;
   border-bottom: 1px solid #f4f5fa;
-  
+
   > div {
     text-align: center;
   }
-  
+
   > div:last-child {
     flex-basis: 80%;
   }
-  
+
   > div:first-child {
     display: flex;
     > button {
@@ -59,8 +59,10 @@ const StyledCardBody = styled.div<{singleBlock?: boolean}>`
     flex-direction: column-reverse;
     height: 196px;
     padding: 26px 24px 32px 24px;
-    
-    ${({singleBlock})=>singleBlock && `
+
+    ${({ singleBlock }) =>
+      singleBlock &&
+      `
       padding: 0; 
       height: 96px;
       flex-direction: row;
@@ -97,7 +99,7 @@ const StyledLiquidity = styled.div`
     padding: 16px;
   `}
   @media screen and (max-width: 414px) {
-   padding-left: 24px;  
+    padding-left: 24px;
   }
 `
 
@@ -108,7 +110,7 @@ const StyledYourLiquidity = styled.div`
   border: 1px solid #f4f5fa;
   box-sizing: border-box;
   border-radius: 6px;
-  
+
   @media screen and (max-width: 376px) {
     margin: 16px;
   }
@@ -149,7 +151,7 @@ const StyledFullPositionCard = styled.div`
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
-  const { account } = useActiveWeb3React()
+  const { account /* , chainId */ } = useActiveWeb3React()
   const { t } = useTranslation()
 
   // fetch the user's balances of all tracked V2 LP tokens
@@ -178,20 +180,27 @@ export default function Pool() {
     fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
   const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
-
+  const getButton = () => {
+    return (
+      // chainId === 56 || chainId === 128 ?
+      // (
+      //   <Button disabled style={{ background: "#CBC8EE" }} id="join-pool-button" as={Link} to="/add/ETH">
+      //     {t('addLiquidity')}
+      //   </Button>
+      // ) : (
+      <Button id="join-pool-button" as={Link} to="/add/ETH">
+        {t('addLiquidity')}
+      </Button>
+      // )
+    )
+  }
   return (
     <CardWrapper>
       <CardNav activeIndex={1} />
       <AppBody>
         <PageHeader title={t('mainMenu.liquidity')} description={t('liquidityDescription')} />
         <StyledCardBody singleBlock={allV2PairsWithLiquidity?.length > 0}>
-          {!account ? (
-            <UnlockButton />
-          ) : (
-            <Button disabled style={{ background: "#CBC8EE" }} id="join-pool-button" as={Link} to="/add/ETH">
-              {t('addLiquidity')}
-            </Button>
-          )}
+          {!account ? <UnlockButton /> : getButton()}
           <StyledRightSide>
             {allV2PairsWithLiquidity?.length === 0 && (
               <>
@@ -236,7 +245,7 @@ export default function Pool() {
             </StyledLiquidity>
             <StyledFoundLiquidity>
               {allV2PairsWithLiquidity.map((v2Pair) => (
-                <StyledFullPositionCard>
+                <StyledFullPositionCard key={v2Pair.liquidityToken.address}>
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 </StyledFullPositionCard>
               ))}
@@ -247,12 +256,12 @@ export default function Pool() {
           <CardBody>
             <AutoColumn gap="12px" style={{ width: '100%' }}>
               <div>
-                {/* <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
+                <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   {t('noJoinedPool')}{' '}
                   <StyledInternalLink id="import-pool-link" to="/find">
                     {t('importPoolMessage')}
                   </StyledInternalLink>
-                </Text> */}
+                </Text>
                 {/* <Text fontSize="14px" style={{ padding: '.5rem 0 .5rem 0' }}>
                   Or, if you staked your FLIP tokens in a farm, unstake them to see them here.
                 </Text> */}

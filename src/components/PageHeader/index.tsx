@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled, { useTheme } from 'styled-components'
-import { Heading, IconButton, Text, Flex, useModal } from '@aliumswap/uikit-beta'
+import { Heading, IconButton, Text, Flex, useModal } from '@aliumswap/uikit'
 import { useTranslation } from 'react-i18next'
 import SettingsModal from './SettingsModal'
 import RecentTransactionsModal from './RecentTransactionsModal'

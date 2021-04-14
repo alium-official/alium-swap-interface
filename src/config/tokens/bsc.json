@@ -1,6 +1,6 @@
 {
-  "name": "pancakeswap",
-  "timestamp": "2020-08-25T15:41:29.665Z",
+  "name": "aliumswap",
+  "timestamp": "2021-03-01T15:41:29.665Z",
   "version": {
     "major": 1,
     "minor": 3,
@@ -8,7 +8,7 @@
   },
   "tags": {},
   "logoURI": "/images/coins/wbnb.png",
-  "keywords": ["pancake", "default"],
+  "keywords": ["alium", "default"],
   "tokens": [
     {
       "name": "Alium Swap",
@@ -32,7 +32,7 @@
       "address": "0x1138ebb3101f557b28326a28b6f192c7fecc95f7",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "/images/coins/USDT-icon.png"
+      "logoURI": "/images/coins/USDT.png"
     },
     {
       "name": "DAI (ALium Test)",
@@ -40,7 +40,7 @@
       "address": "0x618549d304828c77dcb590d02e3641b03e6f4176",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "/images/coins/DAI-icon.png"
+      "logoURI": "/images/coins/DAI.png"
     },
     {
       "name": "WETH Token (Alium Test)",

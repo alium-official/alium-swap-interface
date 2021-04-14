@@ -1,6 +1,6 @@
 import React from 'react'
 import { Price } from '@aliumswap/sdk'
-import { SyncAltIcon, Text } from '@aliumswap/uikit-beta'
+import { SyncAltIcon, Text } from '@aliumswap/uikit'
 
 import { StyledBalanceMaxMini } from './styleds'
 

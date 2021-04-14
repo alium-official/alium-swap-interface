@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
-import { PancakeTheme } from '@aliumswap/uikit-beta/dist/theme'
+import { AliumTheme } from '@aliumswap/uikit/dist/theme'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */
-  export interface DefaultTheme extends PancakeTheme {}
+  export interface DefaultTheme extends AliumTheme {}
 }

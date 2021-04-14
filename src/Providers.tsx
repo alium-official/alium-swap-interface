@@ -1,9 +1,9 @@
 import React from 'react'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import { Provider } from 'react-redux'
-import { ModalProvider } from '@aliumswap/uikit-beta'
+import { ModalProvider } from '@aliumswap/uikit'
 
-import { NetworkContextName } from './constants'
+import { NetworkContextName } from 'config/settings'
 import store from './state'
 import getLibrary from './utils/getLibrary'
 import { ThemeContextProvider } from './ThemeContext'

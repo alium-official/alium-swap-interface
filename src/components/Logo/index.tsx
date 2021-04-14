@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CoinLogoIcon } from '@aliumswap/uikit-beta'
+import { CoinLogoIcon } from '@aliumswap/uikit'
 import styled from 'styled-components'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
@@ -12,7 +12,7 @@ export interface LogoProps {
 }
 
 const StyledCoinLogoIcon = styled(CoinLogoIcon)`
-  background: #FFFFFF;
+  background: #ffffff;
   // box-shadow: 0px 6px 12px rgba(185, 189, 208, 0.4);
   border-radius: 16px;
   // width: 18px;

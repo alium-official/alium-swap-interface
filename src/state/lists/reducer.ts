@@ -2,10 +2,10 @@ import { createReducer } from '@reduxjs/toolkit'
 import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists'
 // eslint-disable-next-line import/no-unresolved
 import { TokenList } from '@uniswap/token-lists/dist/types'
+import DEFAULT_LIST from 'config/tokens'
 import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
 import { updateVersion } from '../global/actions'
 import { acceptListUpdate, addList, fetchTokenList, removeList, selectList } from './actions'
-import DEFAULT_LIST from '../../constants/token/pancakeswap.json'
 
 export interface ListsState {
   readonly byUrl: {
@@ -30,6 +30,9 @@ const NEW_LIST_STATE: ListsState['byUrl'][string] = {
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
 
+const params = new URLSearchParams(window.location.search)
+const id = params.get('network')
+
 const initialState: ListsState = {
   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
   byUrl: {
@@ -39,7 +42,7 @@ const initialState: ListsState = {
     }, {}),
     [DEFAULT_TOKEN_LIST_URL]: {
       error: null,
-      current: DEFAULT_LIST,
+      current: DEFAULT_LIST[id || (process.env.REACT_APP_CHAIN_ID as string)],
       loadingRequestId: null,
       pendingUpdate: null,
     },

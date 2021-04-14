@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-import { ResetCSS } from '@aliumswap/uikit-beta'
+import { ResetCSS } from '@aliumswap/uikit'
 
 import GlobalStyle from './style/Global'
 import App from './pages/App'

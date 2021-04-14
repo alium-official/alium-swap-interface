@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
 import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@aliumswap/sdk'
-import { AddIcon, Button, CardBody, Text, Text as UIKitText } from '@aliumswap/uikit-beta'
+import { AddIcon, Button, CardBody, Text, Text as UIKitText } from '@aliumswap/uikit'
 import { useTranslation } from 'react-i18next'
 import { RouteComponentProps } from 'react-router-dom'
 import { LightCard } from 'components/Card'
@@ -32,23 +32,23 @@ import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { currencyId } from 'utils/currencyId'
 import Pane from 'components/Pane'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { ROUTER_ADDRESS } from 'config/contracts'
 import AppBody from '../AppBody'
 import { Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { PoolPriceBar } from './PoolPriceBar'
-import { ROUTER_ADDRESS } from '../../constants'
 
 const CardWrapper = styled.div`
   width: 100%;
 `
 
 const StyledAddIcon = styled.div`
-  border: 1.5px solid #6C5DD3;
+  border: 1.5px solid #6c5dd3;
   width: 20px;
   height: 20px;
   border-radius: 6px;
   display: flex;
-  
+
   > * {
     margin: auto;
   }
@@ -148,8 +148,14 @@ export default function AddLiquidity({
   )
 
   // check whether the user has approved the router on the tokens
-  const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], ROUTER_ADDRESS)
-  const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], ROUTER_ADDRESS)
+  const [approvalA, approveACallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_A],
+    chainId && ROUTER_ADDRESS[chainId]
+  )
+  const [approvalB, approveBCallback] = useApproveCallback(
+    parsedAmounts[Field.CURRENCY_B],
+    chainId && ROUTER_ADDRESS[chainId]
+  )
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmittedA, setApprovalSubmittedA] = useState<boolean>(false)
@@ -369,15 +375,21 @@ export default function AddLiquidity({
           />
           <CardBody>
             <AutoColumn gap="20px">
-               {noLiquidity && (
+              {noLiquidity && (
                 <ColumnCenter>
-                    <AutoColumn style={{marginTop: '-15px', marginBottom: '10px'}}>
-                      <UIKitText style={{fontSize: '14px', color: '#8990A5', textAlign: 'center'}}>You are the first liquidity provider.</UIKitText>
-                      <UIKitText style={{fontSize: '14px', color: '#8990A5', textAlign: 'center'}}>The ratio of tokens you add will set the price of this pool.</UIKitText>
-                      <UIKitText style={{fontSize: '14px', color: '#8990A5', textAlign: 'center'}}>Once you are happy with the rate click supply to review.</UIKitText>
-                    </AutoColumn>
+                  <AutoColumn style={{ marginTop: '-15px', marginBottom: '10px' }}>
+                    <UIKitText style={{ fontSize: '14px', color: '#8990A5', textAlign: 'center' }}>
+                      You are the first liquidity provider.
+                    </UIKitText>
+                    <UIKitText style={{ fontSize: '14px', color: '#8990A5', textAlign: 'center' }}>
+                      The ratio of tokens you add will set the price of this pool.
+                    </UIKitText>
+                    <UIKitText style={{ fontSize: '14px', color: '#8990A5', textAlign: 'center' }}>
+                      Once you are happy with the rate click supply to review.
+                    </UIKitText>
+                  </AutoColumn>
                 </ColumnCenter>
-               )}
+              )}
               <CurrencyInputPanel
                 label="From"
                 value={formattedAmounts[Field.CURRENCY_A]}
@@ -431,7 +443,7 @@ export default function AddLiquidity({
               )}
 
               {!account ? (
-                <ConnectWalletButton fullWidth />
+                <ConnectWalletButton fullwidth />
               ) : (
                 <AutoColumn gap="md">
                   {(approvalA === ApprovalState.NOT_APPROVED ||

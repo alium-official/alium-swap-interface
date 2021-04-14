@@ -1,9 +1,9 @@
 import { createStore, Store } from 'redux'
+import DEFAULT_LIST from 'config/tokens/index'
 import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
 import { updateVersion } from '../global/actions'
 import { fetchTokenList, acceptListUpdate, addList, removeList, selectList } from './actions'
 import reducer, { ListsState } from './reducer'
-import PANCAKESWAP_DEFAULT_TOKEN_LIST from '../../constants/token/pancakeswap.json'
 
 const STUB_TOKEN_LIST = {
   name: '',
@@ -449,7 +449,7 @@ describe('list reducer', () => {
           if (url === DEFAULT_TOKEN_LIST_URL) {
             expect(s.byUrl[url]).toEqual({
               error: null,
-              current: PANCAKESWAP_DEFAULT_TOKEN_LIST,
+              current: DEFAULT_LIST[97],
               loadingRequestId: null,
               pendingUpdate: null,
             })

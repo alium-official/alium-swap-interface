@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { ToastContainer, Toast } from '@aliumswap/uikit-beta'
+import { ToastContainer, Toast } from '@aliumswap/uikit'
 import useToast from 'state/hooks'
 
 const ToastListener = () => {

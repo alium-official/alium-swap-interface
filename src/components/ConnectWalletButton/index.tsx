@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ButtonProps, useWalletModal } from '@aliumswap/uikit-beta'
+import { Button, ButtonProps, useWalletModal } from '@aliumswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import useAuth from 'hooks/useAuth'

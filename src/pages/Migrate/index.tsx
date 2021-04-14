@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/abstract-provider'
 import { CurrencyAmount } from '@aliumswap/sdk'
-import { CardBody, Button, Heading } from '@aliumswap/uikit-beta'
+import { CardBody, Button, Heading } from '@aliumswap/uikit'
 import { AutoColumn } from 'components/Column'
 import CurrencyInputPanel from 'components/CurrencyInputPanel'
 import CardNav from 'components/CardNav'
@@ -22,7 +22,7 @@ import { useMigrateInfo, useMigrateActionHandlers, useSwapState } from 'state/sw
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { WrappedTokenInfo } from 'state/lists/hooks'
-import { VAMPIRE_ADDRESS } from 'constants/abis/vampire'
+import { VAMPIRE_ADDRESS } from 'config/contracts'
 import { useToken } from 'hooks/Tokens'
 import { Dots } from '../Pool/styleds'
 import AppBody from '../AppBody'
@@ -145,7 +145,10 @@ function Migrate() {
   }
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.INPUT], VAMPIRE_ADDRESS)
+  const [approval, approveCallback] = useApproveCallback(
+    parsedAmounts[Field.INPUT],
+    chainId && VAMPIRE_ADDRESS[chainId]
+  )
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
 
@@ -171,6 +174,7 @@ function Migrate() {
       .then((estimatedGasLimit) => {
         vampire
           .deposit(...args, { from: account, gasLimit: estimatedGasLimit })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           .then((resp) => {
             // setTxHash(resp.hash);
           })
@@ -221,7 +225,7 @@ function Migrate() {
             <ButtonWrap>
               <BottomGrouping>
                 {!account ? (
-                  <ConnectWalletButton fullWidth />
+                  <ConnectWalletButton fullwidth />
                 ) : (
                   <AutoColumn gap="sm">
                     {approval === ApprovalState.UNKNOWN && (
@@ -247,7 +251,7 @@ function Migrate() {
                         onClick={handleMigrate}
                         disabled={!isValid || approval !== ApprovalState.APPROVED}
                         variant={parsedAmounts[Field.INPUT] ? 'primary' : 'danger'}
-                        fullWidth
+                        fullwidth
                       >
                         {migrateInputError ?? 'Migrate'}
                       </Button>

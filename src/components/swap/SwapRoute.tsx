@@ -1,9 +1,9 @@
 import { Trade } from '@aliumswap/sdk'
 import React, { Fragment, memo } from 'react'
 import { ChevronRight } from 'react-feather'
-import { Flex } from '@aliumswap/uikit-beta'
+import { Flex } from '@aliumswap/uikit'
 
-import styled  from 'styled-components'
+import styled from 'styled-components'
 import { TYPE } from '../Shared'
 import CurrencyLogo from '../CurrencyLogo'
 

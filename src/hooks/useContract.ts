@@ -1,16 +1,8 @@
 import { Contract } from '@ethersproject/contracts'
 import { ChainId, WETH } from '@aliumswap/sdk'
-// import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { useMemo } from 'react'
-import { VAMPIRE_ABI, VAMPIRE_ADDRESS } from 'constants/abis/vampire'
-import { IPAIR_ABI } from 'constants/pair'
-import ENS_ABI from '../constants/abis/ens-registrar.json'
-import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
-import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
-import ERC20_ABI from '../constants/abis/erc20.json'
-import UNISOCKS_ABI from '../constants/abis/unisocks.json'
-import WETH_ABI from '../constants/abis/weth.json'
-import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
+import { VAMPIRE_ABI, VAMPIRE_ADDRESS, MULTICALL_ABI, MULTICALL_ADDRESS } from '../config/contracts'
+import { ENS_PUBLIC_RESOLVER_ABI, ENS_ABI, WETH_ABI, ERC20_BYTES32_ABI, ERC20_ABI, IPAIR_ABI } from '../config/abis'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
 
@@ -30,7 +22,8 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
 }
 
 export function useVampireContract(): Contract | null {
-  return useContract(VAMPIRE_ADDRESS, VAMPIRE_ABI, true)
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId && VAMPIRE_ADDRESS[chainId], VAMPIRE_ABI, true)
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
@@ -68,14 +61,5 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 
 export function useMulticallContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
-}
-
-export function useSocksController(): Contract | null {
-  const { chainId } = useActiveWeb3React()
-  return useContract(
-    chainId === ChainId.MAINNET ? '0x65770b5283117639760beA3F867b69b3697a91dd' : undefined,
-    UNISOCKS_ABI,
-    false
-  )
+  return useContract(chainId && MULTICALL_ADDRESS[chainId], MULTICALL_ABI, false)
 }

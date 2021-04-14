@@ -1,5 +1,5 @@
 import { Percent } from '@aliumswap/sdk'
-import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from '../../constants'
+import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from 'config/settings'
 
 /**
  * Given the price impact, get user confirmation.

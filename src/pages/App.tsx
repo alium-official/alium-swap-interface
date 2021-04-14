@@ -1,11 +1,10 @@
 import React, { Suspense } from 'react'
-import { HashRouter, Redirect, Route, RouteProps, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import { NotFound } from '@aliumswap/uikit-beta'
+import { NotFound } from '@aliumswap/uikit'
 
 import backgroundImage from 'assets/svg/trade-background.svg'
 import useEagerConnect from 'hooks/useEagerConnect'
-import Web3ReactManager from '../components/Web3ReactManager'
 
 import AddLiquidity from './AddLiquidity'
 import {
@@ -20,6 +19,7 @@ import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redir
 import Swap from './Swap'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Menu from '../components/Menu'
+import Web3ReactManager from '../components/Web3ReactManager'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -34,8 +34,6 @@ const BodyWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 32px 20%;
-  // align-items: center;
-  // flex: 1;
   padding: 32px 24px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -45,15 +43,11 @@ const BodyWrapper = styled.div`
   background-image: url(${backgroundImage});
   background-repeat: no-repeat;
   background-position: top right;
-  // background-size: 90%;
 
   ${({ theme }) => theme.mediaQueries.lg} {
     background-image: url(${backgroundImage});
     background-repeat: no-repeat;
     background-position: top right;
-    // background-position: bottom, 10% center, 90% center;
-    // background-size: contain, 20%, 20%;
-    // min-height: 90vh;
   }
 
   ${({ theme }) => theme.mediaQueries.sm} {
@@ -63,7 +57,7 @@ const BodyWrapper = styled.div`
   @media screen and (max-width: 768px) {
     padding: 38px 24px;
   }
-  @media screen and (max-width: 376px) {
+  @media screen and (max-width: 500px) {
     padding: 32px 11px;
   }
 `
@@ -82,10 +76,9 @@ const DefaultRoute = ({ ...props }: RouteProps) => {
 
 export default function App() {
   useEagerConnect()
-
   return (
     <Suspense fallback={null}>
-      <HashRouter>
+      <Router>
         <AppWrapper>
           <Web3ReactManager>
             <Switch>
@@ -110,7 +103,7 @@ export default function App() {
             </Switch>
           </Web3ReactManager>
         </AppWrapper>
-      </HashRouter>
+      </Router>
     </Suspense>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Button, Text } from '@aliumswap/uikit-beta'
+import { Button, Text } from '@aliumswap/uikit'
 
 import { AlertTriangle } from 'react-feather'
 import { AutoColumn } from '../Column'

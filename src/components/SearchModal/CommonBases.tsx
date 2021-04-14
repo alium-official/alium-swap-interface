@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@aliumswap/uikit-beta'
+import { Text } from '@aliumswap/uikit'
 
 import { ChainId, Currency, currencyEquals, ETHER, Token } from '@aliumswap/sdk'
 import styled from 'styled-components'

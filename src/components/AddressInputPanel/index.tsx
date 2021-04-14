@@ -5,7 +5,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { ExternalLink, TYPE } from '../Shared'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
-import { getBscScanLink } from '../../utils'
+import { getExplorerLink, getExplorerName } from '../../utils'
 
 const { black: Black } = TYPE
 
@@ -105,8 +105,8 @@ export default function AddressInputPanel({
                 Recipient
               </Black>
               {address && chainId && (
-                <ExternalLink href={getBscScanLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
-                  (View on BscScan)
+                <ExternalLink href={getExplorerLink(chainId, name ?? address, 'address')} style={{ fontSize: '14px' }}>
+                  (View on {getExplorerName(chainId)})
                 </ExternalLink>
               )}
             </RowBetween>

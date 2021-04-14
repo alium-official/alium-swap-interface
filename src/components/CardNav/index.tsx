@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ButtonMenu, ButtonMenuItem, Heading, Flex } from '@aliumswap/uikit-beta'
+import { ButtonMenu, ButtonMenuItem, Heading, Flex } from '@aliumswap/uikit'
 
 const StyledNav = styled.div`
   margin-bottom: 32px;

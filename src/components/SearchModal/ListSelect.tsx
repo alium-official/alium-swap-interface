@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Text } from '@aliumswap/uikit-beta'
+import { Button, Text } from '@aliumswap/uikit'
 
 import styled from 'styled-components'
 import { ReactComponent as DropDown } from '../../assets/svg/dropdown.svg'

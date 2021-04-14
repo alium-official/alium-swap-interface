@@ -63,7 +63,7 @@ export class BscConnector extends AbstractConnector {
     if (window.BinanceChain.on) {
       window.BinanceChain.on('chainChanged', this.handleChainChanged)
       window.BinanceChain.on('accountsChanged', this.handleAccountsChanged)
-      window.BinanceChain.on('close', this.handleClose)
+      window.BinanceChain.on('disconnect', this.handleClose)
       window.BinanceChain.on('networkChanged', this.handleNetworkChanged)
     }
 
@@ -173,7 +173,7 @@ export class BscConnector extends AbstractConnector {
     if (window.BinanceChain && window.BinanceChain.removeListener) {
       window.BinanceChain.removeListener('chainChanged', this.handleChainChanged)
       window.BinanceChain.removeListener('accountsChanged', this.handleAccountsChanged)
-      window.BinanceChain.removeListener('close', this.handleClose)
+      window.BinanceChain.removeListener('disconnect', this.handleClose)
       window.BinanceChain.removeListener('networkChanged', this.handleNetworkChanged)
     }
   }
