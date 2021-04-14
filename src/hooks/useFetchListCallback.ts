@@ -34,7 +34,7 @@ export function useFetchListCallback(): (listUrl: string) => Promise<TokenList> 
     async (listUrl: string) => {
       const requestId = nanoid()
       dispatch(fetchTokenList.pending({ requestId, url: listUrl }))
-      return getTokenList(chainId as ChainId, listUrl, ensResolver)
+      return getTokenList(listUrl, ensResolver)
         .then((tokenList) => {
           dispatch(fetchTokenList.fulfilled({ url: listUrl, tokenList, requestId }))
           return tokenList
@@ -45,7 +45,7 @@ export function useFetchListCallback(): (listUrl: string) => Promise<TokenList> 
           throw error
         })
     },
-    [chainId, dispatch, ensResolver]
+    [dispatch, ensResolver]
   )
 }
 

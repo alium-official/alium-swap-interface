@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Currency, Pair } from '@aliumswap/sdk'
-import { Button, Text, ArrowDropDownIcon } from '@aliumswap/uikit'
+import { Button, Text, ArrowDropDownIcon } from '@aliumswap/uikit-beta'
 import { useTranslation } from 'react-i18next'
 import styled, { useTheme } from 'styled-components'
 import { darken } from 'polished'
@@ -13,12 +13,11 @@ import { Input as NumericalInput } from '../NumericalInput'
 import { useActiveWeb3React } from '../../hooks'
 import { TranslateString } from '../../utils/translateTextHelpers'
 
-const InputRow = styled.div<{ selected: boolean; customHeight?: number }>`
+const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   padding: ${({ selected }) => (selected ? '0.4rem 0.5rem 0.4rem 1rem' : '0.4rem 0.75rem 0.4rem 1rem')};
-  ${({ customHeight }) => (customHeight ? `height: ${customHeight}px;` : '')}
 `
 
 const CurrencySelect = styled.button<{ selected: boolean }>`
@@ -100,7 +99,6 @@ interface CurrencyInputPanelProps {
   id: string
   showCommonBases?: boolean
   currencyList?: any
-  customHeight?: number
 }
 
 export default function CurrencyInputPanel({
@@ -119,7 +117,6 @@ export default function CurrencyInputPanel({
   id,
   showCommonBases,
   currencyList,
-  customHeight,
 }: CurrencyInputPanelProps) {
   const theme = useTheme()
   const { t } = useTranslation()
@@ -137,15 +134,9 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <Text fontSize="14px" style={{ color: '#6C5DD3' }}>
-                {label}
-              </Text>
+              <Text fontSize="14px" style={{color: '#6C5DD3'}}>{label}</Text>
               {account && (
-                <Text
-                  onClick={onMax}
-                  fontSize="14px"
-                  style={{ display: 'inline', cursor: 'pointer', color: '#6C5DD3' }}
-                >
+                <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer', color: '#6C5DD3' }}>
                   {!hideBalance && !!currency && selectedCurrencyBalance
                     ? `Balance: ${selectedCurrencyBalance?.toSignificant(6)}`
                     : ' -'}
@@ -154,11 +145,7 @@ export default function CurrencyInputPanel({
             </RowBetween>
           </LabelRow>
         )}
-        <InputRow
-          style={hideInput ? { padding: '0', borderRadius: '8px' } : {}}
-          selected={disableCurrencySelect}
-          customHeight={customHeight}
-        >
+        <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} selected={disableCurrencySelect}>
           {!hideInput && (
             <>
               <NumericalInput
@@ -187,12 +174,12 @@ export default function CurrencyInputPanel({
           >
             <Aligner>
               {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={24} margin />
+                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
               ) : currency ? (
                 <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
               ) : null}
               {pair ? (
-                <Text color={theme.colors.textSubtle} style={{ marginLeft: '8px', fontSize: '14px' }}>
+                <Text color={theme.colors.textSubtle}>
                   {pair?.token0.symbol}:{pair?.token1.symbol}
                 </Text>
               ) : (

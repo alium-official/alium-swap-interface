@@ -1,5 +1,5 @@
 import { CurrencyAmount, ETHER, JSBI } from '@aliumswap/sdk'
-import { MIN_ETH } from 'config/settings'
+import { MIN_ETH } from '../constants'
 
 /**
  * Given some token amount, return the max that can be spent of it

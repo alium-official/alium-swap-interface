@@ -12,7 +12,7 @@ type ConfirmationModalContentProps = {
 const StyledBodyContainer = styled.div`
   overflow-y: auto;
   max-height: 80vh;
-
+  
   > div:nth-child(2) {
     padding: 0 20px;
   }

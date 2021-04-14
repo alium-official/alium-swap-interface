@@ -1,4 +1,4 @@
-import { MenuEntry } from '@aliumswap/uikit'
+import { MenuEntry } from '@aliumswap/uikit-beta'
 
 const config: MenuEntry[] = [
   {
@@ -102,10 +102,10 @@ const config: MenuEntry[] = [
         label: 'Github',
         href: 'https://github.com/Aliumswap',
       },
-      // {
-      //   label: 'Docs',
-      //   href: 'https://docs.pancakeswap.finance',
-      // },
+      {
+        label: 'Docs',
+        href: 'https://aliumswap.gitbook.io/alium-finance/',
+      },
       {
         label: 'Blog',
         href: 'https://medium.com/@aliumswap',

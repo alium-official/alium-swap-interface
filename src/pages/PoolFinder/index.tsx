@@ -1,7 +1,7 @@
 import { Currency, ETHER, JSBI, TokenAmount } from '@aliumswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from '@aliumswap/uikit'
+import { Button, ChevronDownIcon, AddIcon, CardBody, Text } from '@aliumswap/uikit-beta'
 import { useTranslation } from 'react-i18next'
 import CardNav from 'components/CardNav'
 import { LightCard } from 'components/Card'
@@ -25,12 +25,12 @@ enum Fields {
 }
 
 const StyledAddIcon = styled.div`
-  border: 1.5px solid #6c5dd3;
+  border: 1.5px solid #6C5DD3;
   width: 20px;
   height: 20px;
   border-radius: 6px;
   display: flex;
-
+  
   > * {
     margin: auto;
   }
@@ -101,7 +101,7 @@ export default function PoolFinder() {
               }}
               startIcon={currency0 ? <CurrencyLogo currency={currency0} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              fullwidth
+              fullWidth
             >
               {currency0 ? currency0.symbol : t('selectToken')}
             </Button>
@@ -119,7 +119,7 @@ export default function PoolFinder() {
               }}
               startIcon={currency1 ? <CurrencyLogo currency={currency1} style={{ marginRight: '.5rem' }} /> : null}
               endIcon={<ChevronDownIcon width="24px" color="white" />}
-              fullwidth
+              fullWidth
             >
               {currency1 ? currency1.symbol : t('selectToken')}
             </Button>

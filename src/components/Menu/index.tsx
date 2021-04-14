@@ -1,14 +1,14 @@
-import React from 'react'
-import { Menu as UikitMenu, MenuEntry, useModal } from '@aliumswap/uikit'
+import React, { useContext } from 'react'
+import { Menu as UikitMenu, MenuEntry } from '@aliumswap/uikit-beta'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'react-i18next'
+
+import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
 import useAuth from 'hooks/useAuth'
-import { useCurrencyBalance } from 'state/wallet/hooks'
-import { ETHER, ChainId } from '@aliumswap/sdk'
-import { getExplorerLink, getExplorerName } from 'utils'
-import { useActiveWeb3React } from 'hooks'
-import RecentTransactionsModal from '../PageHeader/RecentTransactionsModal'
+import useGetPriceData from 'hooks/useGetPriceData'
+import useGetLocalProfile from 'hooks/useGetLocalProfile'
+import { allLanguages } from 'constants/localisation/languageCodes'
 
 const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ...props }) => {
   const { t } = useTranslation()
@@ -37,24 +37,72 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         // },
       ],
     },
-    {
-      label: 'Analytics',
-      icon: 'InfoIcon',
-      items: [
-        {
-          label: 'Overview',
-          href: process.env.REACT_APP_INFO_URL as string,
-        },
-        {
-          label: 'Tokens',
-          href: `${process.env.REACT_APP_INFO_URL}/tokens`,
-        },
-        {
-          label: 'Pairs',
-          href: `${process.env.REACT_APP_INFO_URL}/pairs`,
-        },
-      ],
-    },
+    // {
+    //   label: 'Farms',
+    //   icon: 'FarmIcon',
+    //   href: '/farms',
+    // },
+    // {
+    //   label: 'Pools',
+    //   icon: 'PoolIcon',
+    //   href: '/pools',
+    // },
+    // {
+    //   label: 'Lottery',
+    //   icon: 'TicketIcon',
+    //   href: '/lottery',
+    // },
+    // {
+    //   label: 'NFT',
+    //   icon: 'NftIcon',
+    //   href: '/nft',
+    // },
+    // {
+    //   label: 'Teams & Profile',
+    //   icon: 'GroupsIcon',
+    //   calloutClass: 'rainbow',
+    //   items: [
+    //     {
+    //       label: 'Leaderboard',
+    //       href: '/teams',
+    //     },
+    //     {
+    //       label: 'Task Center',
+    //       href: '/profile/tasks',
+    //     },
+    //     {
+    //       label: 'Your Profile',
+    //       href: '/profile',
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: 'Info',
+    //   icon: 'InfoIcon',
+    //   items: [
+    //     {
+    //       label: 'Overview',
+    //       href: 'https://info.dev.alium.finance',
+    //     },
+    //     {
+    //       label: 'Tokens',
+    //       href: 'https://info.dev.alium.finance/tokens',
+    //     },
+    //     {
+    //       label: 'Pairs',
+    //       href: 'https://info.dev.alium.finance/pairs',
+    //     },
+    //     {
+    //       label: 'Accounts',
+    //       href: 'https://info.dev.alium.finance/accounts',
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: 'IFO',
+    //   icon: 'IfoIcon',
+    //   href: '/ifo',
+    // },
     {
       label: t('mainMenu.more'),
       icon: 'MoreIcon',
@@ -80,46 +128,36 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
   ]
 
   const { account } = useWeb3React()
-  const { chainId } = useActiveWeb3React()
   const { login, logout } = useAuth()
+
+  const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const balance = useCurrencyBalance(account as string, ETHER)
-  const explorerName = getExplorerName(chainId as ChainId)
-  const explorerLink = getExplorerLink(chainId as ChainId, account as string, 'address')
-  const useBalance = async () => {
-    const result = await useCurrencyBalance(account as string, ETHER)
-    return result
-  }
-
-  // useBalance().then((result)=>console.log(result))
-
-  const [transactionsHistoryModal] = useModal(<RecentTransactionsModal />)
+  const priceData = useGetPriceData()
+  const cakePriceUsd = priceData ? Number(priceData.prices.Cake) : undefined
+  const profile = useGetLocalProfile()
 
   return (
     <UikitMenu
-      // isProduction={process.env.NODE_ENV === "production"}
       links={links}
       account={account as string}
       login={login}
       logout={logout}
       isDark={isDark}
       toggleTheme={toggleTheme}
+      currentLang={selectedLanguage?.code || ''}
+      langs={allLanguages}
+      setLang={setSelectedLanguage}
+      cakePriceUsd={cakePriceUsd}
+      profile={profile}
       loginBlockVisible={loginBlockVisible}
       buttonTitle={t('connect')}
-      balance={balance?.toSignificant(6)}
-      explorerName={explorerName}
-      explorerLink={explorerLink}
       options={{
-        modalTitle: 'Account',
+        modalTitle: "Your wallet",
         modalFooter: t('learnHowConnect'),
         modelLogout: t('logout'),
         modalBscScan: t('viewOnBscscan'),
         modelCopyAddress: t('copyAddress'),
       }}
-      onTransactionHistoryHandler={transactionsHistoryModal}
-      betaText="This is the main version. Press here to switch to Beta."
-      betaLink="https://beta.exchange.alium.finance"
-      balanceHook={useBalance}
       {...props}
     />
   )

@@ -8,7 +8,7 @@ const Wrapper = styled.div<{ margin: boolean; sizeraw: number }>`
   display: flex;
   flex-direction: row;
   margin-right: ${({ sizeraw, margin }) => margin && `${(sizeraw / 3 + 8).toString()}px`};
-
+  
   > *:last-child {
     position: absolute;
     left: 15px;
@@ -16,10 +16,10 @@ const Wrapper = styled.div<{ margin: boolean; sizeraw: number }>`
     border-radius: 16px;
     box-shadow: 0px 6px 12px rgba(185, 189, 208, 0.4);
   }
-
+  
   > *:first-child {
-    box-shadow: 0px 6px 12px rgba(185, 189, 208, 0.4);
-    z-index: 4;
+     box-shadow: 0px 6px 12px rgba(185, 189, 208, 0.4);
+     z-index: 4;
   }
 `
 

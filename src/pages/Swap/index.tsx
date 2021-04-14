@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 import styled, { ThemeContext } from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@aliumswap/sdk'
 import { ArrowDown } from 'react-feather'
-import { CardBody, Button, Text, Flex } from '@aliumswap/uikit'
+import { CardBody, Button, Text, Flex } from '@aliumswap/uikit-beta'
 
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'
@@ -18,7 +18,7 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 
-import { INITIAL_ALLOWED_SLIPPAGE } from 'config/settings'
+import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
@@ -81,7 +81,7 @@ const StyledRowBetween = styled(RowBetween)`
       width: 100% !important;
       :first-child {
         margin-bottom: 8px;
-      }
+      }  
     }
   }
 `
@@ -476,7 +476,7 @@ const Swap = () => {
                         : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`)}
                   </Button>
                 )}
-                {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
+                 {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
                 {/* <ProgressSteps steps={[approval === ApprovalState.APPROVED]} /> */}
                 {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
               </BottomGrouping>

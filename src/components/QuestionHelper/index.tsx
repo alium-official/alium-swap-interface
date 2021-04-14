@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react'
-import { HelpIcon } from '@aliumswap/uikit'
+import { HelpIcon } from '@aliumswap/uikit-beta'
 import styled from 'styled-components'
 import Tooltip from '../Tooltip'
 
-const QuestionWrapper = styled.div<{ bordered?: boolean }>`
+const QuestionWrapper = styled.div<{bordered?: boolean}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,10 +14,8 @@ const QuestionWrapper = styled.div<{ bordered?: boolean }>`
   cursor: default;
   border-radius: 36px;
   color: ${({ theme }) => theme.colors.textSubtle};
-
-  ${({ bordered }) =>
-    bordered &&
-    `
+  
+  ${({bordered}) => bordered && `
     border: 1px solid #D2D6E5;
     box-sizing: border-box;
     border-radius: 6px;
@@ -31,7 +29,7 @@ const QuestionWrapper = styled.div<{ bordered?: boolean }>`
   }
 `
 
-export default function QuestionHelper({ text, bordered }: { text: string; bordered?: boolean }) {
+export default function QuestionHelper({ text, bordered }: { text: string, bordered?: boolean }) {
   const [show, setShow] = useState<boolean>(false)
 
   const open = useCallback(() => setShow(true), [setShow])

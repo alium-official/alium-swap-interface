@@ -1,17 +1,15 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import styled from 'styled-components'
+import React, { useCallback, useContext, useMemo, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, Percent, WETH, ChainId } from '@aliumswap/sdk'
-import { AddIcon, Button, Flex, Text } from '@aliumswap/uikit'
+import { Currency, currencyEquals, ETHER, Percent, WETH } from '@aliumswap/sdk'
+import { AddIcon, Button, Flex, Text } from '@aliumswap/uikit-beta'
 
-import { ArrowDown, ChevronDown } from 'react-feather'
+import { ArrowDown, Plus } from 'react-feather'
 import { RouteComponentProps } from 'react-router'
 
 import { BigNumber } from '@ethersproject/bignumber'
-import { ROUTER_ADDRESS } from 'config/contracts'
-
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
@@ -23,6 +21,7 @@ import { RowBetween, RowFixed } from '../../components/Row'
 
 import Slider from '../../components/Slider'
 import CurrencyLogo from '../../components/CurrencyLogo'
+import { ROUTER_ADDRESS } from '../../constants'
 import { useActiveWeb3React } from '../../hooks'
 import { useCurrency } from '../../hooks/Tokens'
 import { usePairContract } from '../../hooks/useContract'
@@ -43,36 +42,24 @@ import { Field } from '../../state/burn/actions'
 import { useUserDeadline, useUserSlippageTolerance } from '../../state/user/hooks'
 
 const OutlineCard = styled.div`
-  padding: 17px 24px;
-  background-color: #f5f7ff;
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  border-radius: 16px;
+  padding: 24px;
 `
 
 const Body = styled.div`
-  // padding-left: 24px;
-  // padding-right: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
 `
 
 const StyledAddIcon = styled.div`
-  border: 1.5px solid #6c5dd3;
+  border: 1.5px solid #6C5DD3;
   width: 20px;
   height: 20px;
   border-radius: 6px;
   display: flex;
   margin-left: 20px;
-
-  > * {
-    margin: auto;
-  }
-`
-
-const StyledTextAddIcon = styled.div`
-  border: 1.5px solid #6c5dd3;
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  display: flex;
-  margin: 10px 0;
-
+  
   > * {
     margin: auto;
   }
@@ -92,7 +79,7 @@ export default function RemoveLiquidity({
     chainId,
   ])
 
-  // const theme = useContext(ThemeContext)
+  const theme = useContext(ThemeContext)
 
   // burn state
   const { independentField, typedValue } = useBurnState()
@@ -131,10 +118,7 @@ export default function RemoveLiquidity({
 
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
-  const [approval, approveCallback] = useApproveCallback(
-    parsedAmounts[Field.LIQUIDITY],
-    chainId && ROUTER_ADDRESS[chainId]
-  )
+  const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library) throw new Error('missing dependencies')
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
@@ -165,7 +149,7 @@ export default function RemoveLiquidity({
     ]
     const message = {
       owner: account,
-      spender: ROUTER_ADDRESS[chainId as ChainId],
+      spender: ROUTER_ADDRESS,
       value: liquidityAmount.raw.toString(),
       nonce: nonce.toHexString(),
       deadline: deadlineForSignature,
@@ -353,10 +337,7 @@ export default function RemoveLiquidity({
   function modalHeader() {
     return (
       <AutoColumn gap="md" style={{ marginTop: '0' }}>
-        <RowBetween
-          style={{ backgroundColor: '#F5F7FF', borderRadius: '6px', padding: '13px 16px' }}
-          alignItems="center"
-        >
+        <RowBetween style={{backgroundColor: '#F5F7FF', borderRadius: '6px', padding: '13px 16px'}} alignItems="center">
           <Text fontSize="14px">{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
             <CurrencyLogo currency={currencyA} size="24px" />
@@ -370,10 +351,7 @@ export default function RemoveLiquidity({
             <AddIcon color="#6C5DD3" width="12px" />
           </StyledAddIcon>
         </RowFixed>
-        <RowBetween
-          style={{ backgroundColor: '#F5F7FF', borderRadius: '6px', padding: '13px 16px' }}
-          alignItems="center"
-        >
+        <RowBetween style={{backgroundColor: '#F5F7FF', borderRadius: '6px', padding: '13px 16px'}} alignItems="center">
           <Text fontSize="14px">{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</Text>
           <RowFixed gap="4px">
             <CurrencyLogo currency={currencyB} size="24px" />
@@ -384,18 +362,14 @@ export default function RemoveLiquidity({
         </RowBetween>
 
         <Text fontSize="14px" color="#8990A5">
-          Output is estimated. If the price changes by more than{' '}
-          <Text style={{ display: 'inline-block' }} fontSize="14px" color="#6C5DD3">
-            {allowedSlippage / 100}%
-          </Text>{' '}
-          your transaction will revert.
+          Output is estimated. If the price changes by more than <Text style={{display: 'inline-block'}} fontSize="14px" color="#6C5DD3">{allowedSlippage / 100}%</Text> your transaction will revert.
         </Text>
       </AutoColumn>
     )
   }
 
   const StyledPriceContainer = styled.div`
-    background-color: #f4f5fa;
+    background-color: #F4F5FA;
     border-radius: 6px;
     padding: 6px 8px;
   `
@@ -403,23 +377,17 @@ export default function RemoveLiquidity({
   function modalBottom() {
     return (
       <>
-        <RowBetween style={{ padding: '6px 8px' }}>
-          <Text color="#8990A5" fontSize="11px">
-            {`${currencyA?.symbol}/${currencyB?.symbol}`} Burned
-          </Text>
+        <RowBetween style={{padding: '6px 8px'}}>
+          <Text color="#8990A5" fontSize="11px">{`${currencyA?.symbol}/${currencyB?.symbol}`} Burned</Text>
           <RowFixed>
             <DoubleCurrencyLogo currency0={currencyA} currency1={currencyB} margin size={24} />
-            <Text fontSize="11px" ml="8px">
-              {parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}
-            </Text>
+            <Text fontSize="11px" ml="8px">{parsedAmounts[Field.LIQUIDITY]?.toSignificant(6)}</Text>
           </RowFixed>
         </RowBetween>
         {pair && (
           <StyledPriceContainer>
             <RowBetween>
-              <Text color="#8990A5" fontSize="11px">
-                Price
-              </Text>
+              <Text color="#8990A5" fontSize="11px">Price</Text>
               <Text fontSize="11px" color="#6C5DD3">
                 1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
               </Text>
@@ -432,12 +400,7 @@ export default function RemoveLiquidity({
             </RowBetween>
           </StyledPriceContainer>
         )}
-        <Button
-          disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
-          onClick={onRemove}
-          fullwidth
-          style={{ marginBottom: '24px' }}
-        >
+        <Button disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)} onClick={onRemove} fullWidth style={{marginBottom: '24px'}}>
           Confirm
         </Button>
       </>
@@ -498,15 +461,11 @@ export default function RemoveLiquidity({
     liquidityPercentChangeCallback
   )
 
-  const StyledWrapper = styled(Wrapper)`
-    margin-top: 0;
-  `
-
   return (
     <>
       <AppBody>
         <AddRemoveTabs adding={false} />
-        <StyledWrapper>
+        <Wrapper>
           <TransactionConfirmationModal
             isOpen={showConfirm}
             onDismiss={handleDismissConfirmation}
@@ -522,69 +481,42 @@ export default function RemoveLiquidity({
             )}
             pendingText={pendingText}
           />
-          <AutoColumn>
+          <AutoColumn gap="md">
             <Body>
               <OutlineCard>
-                <AutoColumn gap="8px">
+                <AutoColumn>
                   <RowBetween>
-                    <Text style={{ color: '#8990A5', fontWeight: 500, letterSpacing: '0.3px', fontSize: '16px' }}>
-                      Amount
-                    </Text>
+                    <Text>Amount</Text>
                     <ClickableText
                       onClick={() => {
                         setShowDetailed(!showDetailed)
                       }}
-                      style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px' }}
                     >
-                      <Flex alignItems="center">
-                        {showDetailed ? 'Simple' : 'Detailed'}
-                        <ChevronDown width="16px" height="16px" />
-                      </Flex>
+                      {showDetailed ? 'Simple' : 'Detailed'}
                     </ClickableText>
                   </RowBetween>
                   <Flex justifyContent="start">
-                    <Text
-                      fontSize="40px"
-                      style={{ color: '#0B1359', fontWeight: 700, letterSpacing: '0.3px', lineHeight: '1' }}
-                    >
-                      {formattedAmounts[Field.LIQUIDITY_PERCENT]}%
-                    </Text>
+                    <Text fontSize="64px">{formattedAmounts[Field.LIQUIDITY_PERCENT]}%</Text>
                   </Flex>
                   {!showDetailed && (
                     <>
-                      <Flex>
+                      <Flex mb="8px">
                         <Slider value={innerLiquidityPercentage} onChange={setInnerLiquidityPercentage} />
                       </Flex>
-                      <Flex justifyContent="space-between">
-                        <Button
-                          variant="tertiary"
-                          size="sm"
-                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
-                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
-                        >
+                      <Flex justifyContent="space-around">
+                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}>
                           25%
                         </Button>
-                        <Button
-                          variant="tertiary"
-                          size="sm"
-                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
-                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
-                        >
+                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}>
                           50%
                         </Button>
-                        <Button
-                          variant="tertiary"
-                          size="sm"
-                          onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
-                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
-                        >
+                        <Button variant="tertiary" size="sm" onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}>
                           75%
                         </Button>
                         <Button
                           variant="tertiary"
                           size="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
-                          style={{ height: '24px', width: '37px', fontSize: '10px', fontWeight: 'bold' }}
                         >
                           Max
                         </Button>
@@ -597,31 +529,25 @@ export default function RemoveLiquidity({
             {!showDetailed && (
               <>
                 <ColumnCenter>
-                  <StyledTextAddIcon>
-                    <ArrowDown size="12" color="#6C5DD3" />
-                  </StyledTextAddIcon>
+                  <ArrowDown size="16" color={theme.colors.textSubtle} />
                 </ColumnCenter>
                 <Body>
-                  <OutlineCard style={{ background: 'none', padding: '0 24px' }}>
-                    <AutoColumn>
-                      <RowBetween style={{ padding: '10px 16px' }}>
-                        <Text fontSize="14px" style={{ fontWeight: 500 }}>
-                          {formattedAmounts[Field.CURRENCY_A] || '-'}
-                        </Text>
+                  <OutlineCard>
+                    <AutoColumn gap="10px">
+                      <RowBetween>
+                        <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_A] || '-'}</Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyA} style={{ marginRight: '12px' }} />
-                          <Text fontSize="14px" id="remove-liquidity-tokena-symbol" style={{ fontWeight: 500 }}>
+                          <Text fontSize="24px" id="remove-liquidity-tokena-symbol">
                             {currencyA?.symbol}
                           </Text>
                         </RowFixed>
                       </RowBetween>
-                      <RowBetween style={{ backgroundColor: '#F4F5FA', padding: '10px 16px', borderRadius: '6px' }}>
-                        <Text fontSize="14px" style={{ fontWeight: 500 }}>
-                          {formattedAmounts[Field.CURRENCY_B] || '-'}
-                        </Text>
+                      <RowBetween>
+                        <Text fontSize="24px">{formattedAmounts[Field.CURRENCY_B] || '-'}</Text>
                         <RowFixed>
                           <CurrencyLogo currency={currencyB} style={{ marginRight: '12px' }} />
-                          <Text fontSize="14px" id="remove-liquidity-tokenb-symbol" style={{ fontWeight: 500 }}>
+                          <Text fontSize="24px" id="remove-liquidity-tokenb-symbol">
                             {currencyB?.symbol}
                           </Text>
                         </RowFixed>
@@ -652,7 +578,7 @@ export default function RemoveLiquidity({
                 </Body>
               </>
             )}
-            <Body style={{ padding: '24px' }}>
+            <Body style={{ paddingBottom: '24px' }}>
               {showDetailed && (
                 <>
                   <CurrencyInputPanel
@@ -665,14 +591,10 @@ export default function RemoveLiquidity({
                     disableCurrencySelect
                     currency={pair?.liquidityToken}
                     pair={pair}
-                    label="From"
                     id="liquidity-amount"
-                    customHeight={43}
                   />
                   <ColumnCenter>
-                    <StyledTextAddIcon>
-                      <ArrowDown size="12" color="#6C5DD3" />
-                    </StyledTextAddIcon>
+                    <ArrowDown size="16" color={theme.colors.textSubtle} />
                   </ColumnCenter>
                   <CurrencyInputPanel
                     hideBalance
@@ -684,12 +606,9 @@ export default function RemoveLiquidity({
                     label="Output"
                     onCurrencySelect={handleSelectCurrencyA}
                     id="remove-liquidity-tokena"
-                    customHeight={43}
                   />
                   <ColumnCenter>
-                    <StyledTextAddIcon>
-                      <AddIcon color="#6C5DD3" width="12px" />
-                    </StyledTextAddIcon>
+                    <Plus size="16" color={theme.colors.textSubtle} />
                   </ColumnCenter>
                   <CurrencyInputPanel
                     hideBalance
@@ -701,29 +620,28 @@ export default function RemoveLiquidity({
                     label="Output"
                     onCurrencySelect={handleSelectCurrencyB}
                     id="remove-liquidity-tokenb"
-                    customHeight={43}
                   />
                 </>
               )}
               {pair && (
-                <div style={{ padding: '32px 0' }}>
+                <div style={{ padding: '24px' }}>
                   <Flex justifyContent="space-between" mb="8px">
-                    <Text style={{ color: '#8990A5', fontSize: '14px', fontWeight: 500 }}>Price:</Text>
-                    <Text style={{ color: '#0B1359', fontSize: '14px', fontWeight: 500 }}>
+                    Price:
+                    <div>
                       1 {currencyA?.symbol} = {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.symbol}
-                    </Text>
+                    </div>
                   </Flex>
                   <Flex justifyContent="space-between">
                     <div />
-                    <Text style={{ color: '#0B1359', fontSize: '14px', fontWeight: 500 }}>
+                    <div>
                       1 {currencyB?.symbol} = {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.symbol}
-                    </Text>
+                    </div>
                   </Flex>
                 </div>
               )}
               <div style={{ position: 'relative' }}>
                 {!account ? (
-                  <ConnectWalletButton fullwidth />
+                  <ConnectWalletButton fullWidth />
                 ) : (
                   <RowBetween>
                     <Button
@@ -758,7 +676,7 @@ export default function RemoveLiquidity({
               </div>
             </Body>
           </AutoColumn>
-        </StyledWrapper>
+        </Wrapper>
       </AppBody>
 
       {pair ? (

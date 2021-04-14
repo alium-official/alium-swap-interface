@@ -1,11 +1,11 @@
 import { ChainId } from '@aliumswap/sdk'
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { Button, LinkExternal } from '@aliumswap/uikit'
+import { Button, LinkExternal } from '@aliumswap/uikit-beta'
 import { useTranslation } from 'react-i18next'
 import { ArrowUpCircle } from 'react-feather'
 import { AutoColumn } from '../Column'
-import { getExplorerLink, getExplorerName } from '../../utils'
+import { getBscScanLink } from '../../utils'
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers'
 
 type TransactionSubmittedContentProps = {
@@ -27,9 +27,7 @@ const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSu
         </ConfirmedIcon>
         <AutoColumn gap="8px" justify="center">
           {chainId && hash && (
-            <LinkExternal href={getExplorerLink(chainId, hash, 'transaction')}>
-              View on {getExplorerName(chainId)}
-            </LinkExternal>
+            <LinkExternal href={getBscScanLink(chainId, hash, 'transaction')}>View on BscScan</LinkExternal>
           )}
           <Button onClick={onDismiss} mt="20px">
             {t('close')}

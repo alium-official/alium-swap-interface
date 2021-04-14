@@ -1,6 +1,6 @@
 import { Token } from '@aliumswap/sdk'
 import { transparentize } from 'polished'
-import { Button, Text } from '@aliumswap/uikit'
+import { Button, Text } from '@aliumswap/uikit-beta'
 
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import { AlertTriangle } from 'react-feather'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
 import { ExternalLink, TYPE } from '../Shared'
-import { getExplorerLink, getExplorerName, shortenAddress } from '../../utils'
+import { getBscScanLink, shortenAddress } from '../../utils'
 import CurrencyLogo from '../CurrencyLogo'
 import Modal from '../Modal'
 import { AutoRow, RowBetween } from '../Row'
@@ -76,10 +76,8 @@ function TokenWarningCard({ token }: TokenWarningCardProps) {
               : token.name || token.symbol}{' '}
           </Main>
           {chainId && (
-            <ExternalLink style={{ fontWeight: 400 }} href={getExplorerLink(chainId, token.address, 'token')}>
-              <Blue title={token.address}>
-                {shortenAddress(token.address)} (View on {getExplorerName(chainId)})
-              </Blue>
+            <ExternalLink style={{ fontWeight: 400 }} href={getBscScanLink(chainId, token.address, 'token')}>
+              <Blue title={token.address}>{shortenAddress(token.address)} (View on BscScan)</Blue>
             </ExternalLink>
           )}
         </AutoColumn>

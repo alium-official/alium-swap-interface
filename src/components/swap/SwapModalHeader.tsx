@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Trade, TradeType } from '@aliumswap/sdk'
-import { Button, Text, ColoredArrowDownIcon } from '@aliumswap/uikit'
+import { Button, Text, ColoredArrowDownIcon } from '@aliumswap/uikit-beta'
 
 import { AlertTriangle } from 'react-feather'
 
@@ -18,11 +18,11 @@ const { main: Main } = TYPE
 
 const PriceInfoText = styled(Text)`
   line-height: 1.3;
-  color: #8990a5;
+  color: #8990A5;
   font-size: 14px;
 
   span {
-    color: #6c5dd3;
+    color: #6C5DD3;
     font-weight: 600;
   }
 `
@@ -51,16 +51,7 @@ export default function SwapModalHeader({
 
   return (
     <AutoColumn gap="md" style={{ marginTop: '20px' }}>
-      <RowBetween
-        align="flex-end"
-        style={{
-          backgroundColor: '#F5F7FF',
-          borderRadius: '6px',
-          height: '48px',
-          placeItems: 'center',
-          padding: '0 16px',
-        }}
-      >
+      <RowBetween align="flex-end" style={{backgroundColor: '#F5F7FF', borderRadius: '6px', height: '48px', placeItems: 'center', padding: '0 16px'}}>
         <RowFixed gap="0px">
           <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
           <Text
@@ -77,18 +68,9 @@ export default function SwapModalHeader({
         </RowFixed>
       </RowBetween>
       <RowFixed>
-        <ColoredArrowDownIcon width="24px" style={{ marginLeft: '16px' }} />
+        <ColoredArrowDownIcon width="24px" style={{marginLeft: '16px'}} />
       </RowFixed>
-      <RowBetween
-        align="flex-end"
-        style={{
-          backgroundColor: '#F5F7FF',
-          borderRadius: '6px',
-          height: '48px',
-          placeItems: 'center',
-          padding: '0 16px',
-        }}
-      >
+      <RowBetween align="flex-end" style={{backgroundColor: '#F5F7FF', borderRadius: '6px', height: '48px', placeItems: 'center', padding: '0 16px'}}>
         <RowFixed gap="0px">
           <CurrencyLogo currency={trade.outputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
           <Text
@@ -116,10 +98,7 @@ export default function SwapModalHeader({
           <RowBetween>
             <RowFixed>
               <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
-              <Main color={theme.colors.primary} style={{ fontSize: '14px' }}>
-                {' '}
-                Price Updated
-              </Main>
+              <Main color={theme.colors.primary} style={{fontSize: '14px'}}> Price Updated</Main>
             </RowFixed>
             <Button onClick={onAcceptChanges}>Accept</Button>
           </RowBetween>

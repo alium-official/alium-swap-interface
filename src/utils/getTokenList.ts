@@ -1,14 +1,13 @@
-import { ChainId } from '@aliumswap/sdk'
 import { TokenList } from '@uniswap/token-lists'
 import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'
-import defaultTokenJson from 'config/tokens'
 import contenthashToUri from './contenthashToUri'
 import { parseENSAddress } from './parseENSAddress'
 import uriToHttp from './uriToHttp'
 
 // bakeryswap defaultTokenJson
 import { DEFAULT_TOKEN_LIST_URL } from '../constants/lists'
+import defaultTokenJson from '../constants/token/pancakeswap.json'
 
 const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
 
@@ -18,12 +17,11 @@ const tokenListValidator = new Ajv({ allErrors: true }).compile(schema)
  * @param resolveENSContentHash resolves an ens name to a contenthash
  */
 export default async function getTokenList(
-  chainId: ChainId,
   listUrl: string,
   resolveENSContentHash: (ensName: string) => Promise<string>
 ): Promise<TokenList> {
   if (listUrl === DEFAULT_TOKEN_LIST_URL) {
-    return defaultTokenJson[chainId]
+    return defaultTokenJson
   }
   const parsedENS = parseENSAddress(listUrl)
 

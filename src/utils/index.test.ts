@@ -3,7 +3,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { TokenAmount, Token, ChainId, Percent, JSBI } from '@aliumswap/sdk'
 
 import {
-  getExplorerLink,
+  getBscScanLink,
   calculateSlippageAmount,
   isAddress,
   shortenAddress,
@@ -12,24 +12,24 @@ import {
 } from '.'
 
 describe('utils', () => {
-  describe('#getExplorerLink', () => {
+  describe('#getBscScanLink', () => {
     it('correct for tx', () => {
-      expect(getExplorerLink(1, 'abc', 'transaction')).toEqual('https://bscscan.com/tx/abc')
+      expect(getBscScanLink(1, 'abc', 'transaction')).toEqual('https://bscscan.com/tx/abc')
     })
     it('correct for token', () => {
-      expect(getExplorerLink(1, 'abc', 'token')).toEqual('https://bscscan.com/token/abc')
+      expect(getBscScanLink(1, 'abc', 'token')).toEqual('https://bscscan.com/token/abc')
     })
     it('correct for address', () => {
-      expect(getExplorerLink(1, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
+      expect(getBscScanLink(1, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
     })
     it('unrecognized chain id defaults to mainnet', () => {
-      expect(getExplorerLink(2, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
+      expect(getBscScanLink(2, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
     })
     it('ropsten', () => {
-      expect(getExplorerLink(3, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
+      expect(getBscScanLink(3, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
     })
     it('enum', () => {
-      expect(getExplorerLink(ChainId.RINKEBY, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
+      expect(getBscScanLink(ChainId.RINKEBY, 'abc', 'address')).toEqual('https://bscscan.com/address/abc')
     })
   })
 

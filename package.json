@@ -4,8 +4,9 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "@aliumswap/sdk": "^1.1.10",
-    "@aliumswap/uikit": "0.11.44",
+    "@aliumswap/sdk": "^1.1.5",
+    "@aliumswap/uikit": "0.10.74",
+    "@aliumswap/uikit-beta": "0.1.0",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
@@ -87,7 +88,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
   },
   "browserslist": {

@@ -1,6 +1,6 @@
 import { Trade, TradeType } from '@aliumswap/sdk'
 import React, { useMemo, useState } from 'react'
-import { Text, Button, SwapIcon } from '@aliumswap/uikit'
+import { Text, Button, SwapIcon } from '@aliumswap/uikit-beta'
 
 import { Field } from '../../state/swap/actions'
 import {
@@ -38,11 +38,9 @@ export default function SwapModalFooter({
 
   return (
     <>
-      <AutoColumn gap="0px" style={{ userSelect: 'none' }}>
-        <RowBetween align="center" style={{ padding: '4px 8px' }}>
-          <Text fontSize="11px" color="#8990A5">
-            Price
-          </Text>
+      <AutoColumn gap="0px" style={{userSelect: 'none'}}>
+        <RowBetween align="center" style={{padding: '4px 8px'}}>
+          <Text fontSize="11px" color="#8990A5">Price</Text>
           <Text
             fontSize="11px"
             style={{
@@ -56,11 +54,11 @@ export default function SwapModalFooter({
             color="#0B1359"
           >
             {formatExecutionPrice(trade, showInverted)}
-            <SwapIcon onClick={() => setShowInverted(!showInverted)} style={{ marginLeft: '8px', cursor: 'pointer' }} />
+            <SwapIcon onClick={() => setShowInverted(!showInverted)} style={{marginLeft: '8px', cursor: 'pointer'}}/>
           </Text>
         </RowBetween>
 
-        <RowBetween style={{ backgroundColor: '#F4F5FA', borderRadius: '6px', padding: '4px 8px' }}>
+        <RowBetween style={{backgroundColor: '#F4F5FA', borderRadius: '6px', padding: '4px 8px'}}>
           <RowFixed>
             <Text fontSize="11px" color="#8990A5">
               {trade.tradeType === TradeType.EXACT_INPUT ? 'Minimum received' : 'Maximum sold'}
@@ -80,20 +78,16 @@ export default function SwapModalFooter({
             </Text>
           </RowFixed>
         </RowBetween>
-        <RowBetween style={{ padding: '4px 8px' }}>
+        <RowBetween style={{padding: '4px 8px'}}>
           <RowFixed>
-            <Text fontSize="11px" color="#8990A5">
-              Price Impact
-            </Text>
+            <Text fontSize="11px" color="#8990A5">Price Impact</Text>
             <QuestionHelper text="The difference between the market price and your price due to trade size." />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
-        <RowBetween style={{ backgroundColor: '#F4F5FA', borderRadius: '6px', padding: '4px 8px' }}>
+        <RowBetween style={{backgroundColor: '#F4F5FA', borderRadius: '6px', padding: '4px 8px'}}>
           <RowFixed>
-            <Text fontSize="11px" color="#8990A5">
-              Liquidity Provider Fee
-            </Text>
+            <Text fontSize="11px" color="#8990A5">Liquidity Provider Fee</Text>
             <QuestionHelper text="For each trade a 0.25% fee is paid. 0.2% goes to liquidity providers and 0.05% goes to the AliumSwap treasury." />
           </RowFixed>
           <Text fontSize="11px" color="#6C5DD3">
@@ -110,7 +104,7 @@ export default function SwapModalFooter({
           mt="10px"
           mb="20px"
           id="confirm-swap-or-send"
-          fullwidth
+          fullWidth
         >
           {severity > 2 ? 'Swap Anyway' : 'Confirm Swap'}
         </Button>

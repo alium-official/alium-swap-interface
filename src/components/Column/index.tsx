@@ -12,16 +12,14 @@ export const ColumnCenter = styled(Column)`
 
 export const AutoColumn = styled.div<{
   gap?: 'sm' | 'md' | 'lg' | string
-  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between'
+  justify?: 'stretch' | 'center' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'space-between',
   triggerMobile?: boolean
 }>`
   display: grid;
   grid-auto-rows: auto;
   grid-row-gap: ${({ gap }) => (gap === 'sm' && '8px') || (gap === 'md' && '12px') || (gap === 'lg' && '24px') || gap};
   justify-items: ${({ justify }) => justify && justify};
-  ${({ triggerMobile }) =>
-    triggerMobile &&
-    `
+  ${({triggerMobile}) => triggerMobile && `
     @media screen and (max-width: 576px){
         padding: 0 !important;
         > div > div {
