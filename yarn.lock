@@ -14,10 +14,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@aliumswap/uikit@0.11.44":
-  version "0.11.44"
-  resolved "https://registry.yarnpkg.com/@aliumswap/uikit/-/uikit-0.11.44.tgz#50e67890332e8bbe5617ca584ce582983138f8b8"
-  integrity sha512-aSI19xODwkEfwl1V0OTg7yEL2ssc5XoCF96AoJ0WW5L1qcRHpz4EHXlKdyVyS0wkRF61AgHlDdErGiaUXkX0Hg==
+"@aliumswap/uikit@0.11.46":
+  version "0.11.46"
+  resolved "https://registry.yarnpkg.com/@aliumswap/uikit/-/uikit-0.11.46.tgz#3f86c3a94083ea33f7770f5b00917976c9132a8f"
+  integrity sha512-6wXnxqagRRqkWgv05RurFA0PG3srEp5a8qW+tomXqx/T5wYs6z7U5QZQ4MMeBWcF1bLYQpblqMdIAsLrCeJntQ==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -2680,7 +2680,7 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
-"@types/react-router-dom@^5.1.6":
+"@types/react-router-dom@^5.2.0":
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.7.tgz#a126d9ea76079ffbbdb0d9225073eb5797ab7271"
   integrity sha512-D5mHD6TbdV/DNHYsnwBTv+y73ei+mMjrkGrla86HthE4/PVvL1J94Bu3qABU+COXzpL23T1EZapVVpwHuBXiUg==

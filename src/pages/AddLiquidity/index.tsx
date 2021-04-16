@@ -119,6 +119,7 @@ export default function AddLiquidity({
   const [deadline] = useUserDeadline() // custom from users settings
   const [allowedSlippage] = useUserSlippageTolerance() // custom from users
   const [txHash, setTxHash] = useState<string>('')
+  const { t } = useTranslation()
 
   // get formatted amounts
   const formattedAmounts = {
@@ -307,8 +308,6 @@ export default function AddLiquidity({
       />
     )
   }
-
-  const { t } = useTranslation()
 
   const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
     currencies[Field.CURRENCY_A]?.symbol

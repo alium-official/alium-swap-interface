@@ -37,24 +37,24 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         // },
       ],
     },
-    {
-      label: 'Analytics',
-      icon: 'InfoIcon',
-      items: [
-        {
-          label: 'Overview',
-          href: process.env.REACT_APP_INFO_URL as string,
-        },
-        {
-          label: 'Tokens',
-          href: `${process.env.REACT_APP_INFO_URL}/tokens`,
-        },
-        {
-          label: 'Pairs',
-          href: `${process.env.REACT_APP_INFO_URL}/pairs`,
-        },
-      ],
-    },
+    // {
+    //   label: 'Analytics',
+    //   icon: 'InfoIcon',
+    //   items: [
+    //     {
+    //       label: 'Overview',
+    //       href: process.env.REACT_APP_INFO_URL as string,
+    //     },
+    //     {
+    //       label: 'Tokens',
+    //       href: `${process.env.REACT_APP_INFO_URL}/tokens`,
+    //     },
+    //     {
+    //       label: 'Pairs',
+    //       href: `${process.env.REACT_APP_INFO_URL}/pairs`,
+    //     },
+    //   ],
+    // },
     {
       label: t('mainMenu.more'),
       icon: 'MoreIcon',
@@ -63,6 +63,10 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         //   label: 'Voting',
         //   href: 'https://voting.dev.alium.finance',
         // },
+        {
+          label: 'Audits',
+          href: `${process.env.REACT_APP_HOME_URL}/audits`,
+        },
         {
           label: t('mainMenu.github'),
           href: 'https://github.com/Aliumswap',

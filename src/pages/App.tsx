@@ -76,6 +76,7 @@ const DefaultRoute = ({ ...props }: RouteProps) => {
 
 export default function App() {
   useEagerConnect()
+
   return (
     <Suspense fallback={null}>
       <Router>
