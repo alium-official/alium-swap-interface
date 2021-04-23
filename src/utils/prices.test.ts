@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@aliumswap/sdk'
+import { ChainId, JSBI, Pair, Route, Token, TokenAmount, Trade, TradeType } from '@alium-official/sdk'
 import { computeTradePriceBreakdown } from './prices'
 
 describe('prices', () => {

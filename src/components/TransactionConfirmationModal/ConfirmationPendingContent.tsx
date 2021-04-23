@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Spinner } from '@aliumswap/uikit'
+import { Text, Spinner } from '@alium-official/uikit'
 
 import { AutoColumn } from '../Column'
 import Circle from '../../assets/svg/blue-loader.svg'

@@ -1,4 +1,4 @@
-import { Text } from '@aliumswap/uikit'
+import { Text } from '@alium-official/uikit'
 
 import styled from 'styled-components'
 

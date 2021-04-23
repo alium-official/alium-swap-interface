@@ -1,7 +1,7 @@
 import React from 'react'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 import { Provider } from 'react-redux'
-import { ModalProvider } from '@aliumswap/uikit'
+import { ModalProvider } from '@alium-official/uikit'
 
 import { NetworkContextName } from 'config/settings'
 import store from './state'

@@ -3,7 +3,7 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@aliumswap/sdk'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@alium-official/sdk'
 import { ROUTER_ADDRESS, ROUTER_ABI } from 'config/contracts'
 import { TokenAddressMap } from '../state/lists/hooks'
 

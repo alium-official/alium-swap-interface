@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
-import { Currency, Pair } from '@aliumswap/sdk'
-import { Button, Text, ArrowDropDownIcon } from '@aliumswap/uikit'
+import { Currency, Pair } from '@alium-official/sdk'
+import { Button, Text, ArrowDropDownIcon } from '@alium-official/uikit'
 import { useTranslation } from 'react-i18next'
 import styled, { useTheme } from 'styled-components'
 import { darken } from 'polished'

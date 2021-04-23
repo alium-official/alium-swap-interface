@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 import { TokenList } from '@uniswap/token-lists'
 import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'

@@ -1,4 +1,4 @@
-import { JSBI, Percent } from '@aliumswap/sdk'
+import { JSBI, Percent } from '@alium-official/sdk'
 
 export const NetworkContextName = 'NETWORK'
 

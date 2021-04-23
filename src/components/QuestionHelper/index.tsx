@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { HelpIcon } from '@aliumswap/uikit'
+import { HelpIcon } from '@alium-official/uikit'
 import styled from 'styled-components'
 import Tooltip from '../Tooltip'
 

@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 
 const MULTICALL_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0x1Ee38d535d541c55C9dae27B12edf090C608E6Fb',

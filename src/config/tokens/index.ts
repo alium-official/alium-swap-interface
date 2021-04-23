@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 
 import bscTokens from './bsc.json'
 import hecoTokens from './heco.json'

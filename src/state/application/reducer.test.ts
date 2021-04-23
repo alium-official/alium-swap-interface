@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 import { createStore, Store } from 'redux'
 import { addPopup, removePopup, toggleSettingsMenu, toggleWalletModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

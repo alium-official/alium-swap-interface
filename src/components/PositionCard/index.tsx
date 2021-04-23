@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { JSBI, Pair, Percent } from '@aliumswap/sdk'
+import { JSBI, Pair, Percent } from '@alium-official/sdk'
 import {
   Button,
   Card as UIKitCard,
@@ -9,7 +9,7 @@ import {
   ArrowDropUpIcon,
   ArrowDropDownIcon,
   ColoredCopyIcon,
-} from '@aliumswap/uikit'
+} from '@alium-official/uikit'
 import { darken } from 'polished'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'

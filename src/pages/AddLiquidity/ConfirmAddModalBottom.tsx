@@ -1,6 +1,6 @@
-import { Currency, CurrencyAmount, Fraction, Percent } from '@aliumswap/sdk'
+import { Currency, CurrencyAmount, Fraction, Percent } from '@alium-official/sdk'
 import React from 'react'
-import { Button } from '@aliumswap/uikit'
+import { Button } from '@alium-official/uikit'
 
 import { RowBetween, RowFixed } from '../../components/Row'
 import CurrencyLogo from '../../components/CurrencyLogo'

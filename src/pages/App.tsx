@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Redirect, Route, RouteProps, Switch } from 'react-router-dom'
 import styled from 'styled-components'
-import { NotFound } from '@aliumswap/uikit'
+import { NotFound } from '@alium-official/uikit'
 
 import backgroundImage from 'assets/svg/trade-background.svg'
 import useEagerConnect from 'hooks/useEagerConnect'

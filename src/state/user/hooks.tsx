@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from '@aliumswap/sdk'
+import { ChainId, Pair, Token } from '@alium-official/sdk'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'

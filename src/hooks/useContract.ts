@@ -1,5 +1,5 @@
 import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@aliumswap/sdk'
+import { ChainId, WETH } from '@alium-official/sdk'
 import { useMemo } from 'react'
 import { VAMPIRE_ABI, VAMPIRE_ADDRESS, MULTICALL_ABI, MULTICALL_ADDRESS } from '../config/contracts'
 import { ENS_PUBLIC_RESOLVER_ABI, ENS_ABI, WETH_ABI, ERC20_BYTES32_ABI, ERC20_ABI, IPAIR_ABI } from '../config/abis'

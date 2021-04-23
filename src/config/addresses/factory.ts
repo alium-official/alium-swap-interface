@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 
 const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xbEAC7e750728e865A3cb39D5ED6E3A3044ae4B98',

@@ -1,7 +1,7 @@
-import { Trade } from '@aliumswap/sdk'
+import { Trade } from '@alium-official/sdk'
 import React, { Fragment, memo } from 'react'
 import { ChevronRight } from 'react-feather'
-import { Flex } from '@aliumswap/uikit'
+import { Flex } from '@alium-official/uikit'
 
 import styled from 'styled-components'
 import { TYPE } from '../Shared'

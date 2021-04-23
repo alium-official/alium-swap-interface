@@ -1,8 +1,8 @@
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@aliumswap/sdk'
+import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@alium-official/sdk'
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
 import { FixedSizeList } from 'react-window'
 import styled from 'styled-components'
-import { Text } from '@aliumswap/uikit'
+import { Text } from '@alium-official/uikit'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useSelectedTokenList, WrappedTokenInfo } from '../../state/lists/hooks'

@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@aliumswap/sdk'
+import { Currency, ETHER, Token } from '@alium-official/sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'ETH'

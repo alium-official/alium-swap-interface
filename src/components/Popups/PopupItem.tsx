@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useSpring } from 'react-spring/web'
-import { CloseIcon } from '@aliumswap/uikit'
+import { CloseIcon } from '@alium-official/uikit'
 import styled from 'styled-components'
 import { animated } from 'react-spring'
 import { PopupContent } from '../../state/application/actions'

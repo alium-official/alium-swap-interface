@@ -1,8 +1,8 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { BscConnector } from '@binance-chain/bsc-connector'
-import { ConnectorNames } from '@aliumswap/uikit'
+import { ConnectorNames } from '@alium-official/uikit'
 // import Web3 from 'web3'
 import getNodeUrl from './getRpcUrl'
 

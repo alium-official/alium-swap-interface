@@ -1,4 +1,4 @@
-import { Token } from '@aliumswap/sdk'
+import { Token } from '@alium-official/sdk'
 import { isAddress } from '../../utils'
 
 export function filterTokens(tokens: Token[], search: string): Token[] {

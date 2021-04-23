@@ -1,4 +1,4 @@
-import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@aliumswap/sdk'
+import { CurrencyAmount, Fraction, JSBI, Percent, TokenAmount, Trade } from '@alium-official/sdk'
 import {
   BLOCKED_PRICE_IMPACT_NON_EXPERT,
   ALLOWED_PRICE_IMPACT_HIGH,

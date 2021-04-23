@@ -1,4 +1,4 @@
-import { TokenAmount, Pair, Currency } from '@aliumswap/sdk'
+import { TokenAmount, Pair, Currency } from '@alium-official/sdk'
 import { useMemo } from 'react'
 import { PAIR_INTERFACE } from 'config/interfaces'
 import { useActiveWeb3React } from '../hooks'

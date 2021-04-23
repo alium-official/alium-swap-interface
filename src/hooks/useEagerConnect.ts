@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { connectorLocalStorageKey, ConnectorNames } from '@aliumswap/uikit'
+import { connectorLocalStorageKey, ConnectorNames } from '@alium-official/uikit'
 import useAuth from 'hooks/useAuth'
 
 const _binanceChainListener = async () =>

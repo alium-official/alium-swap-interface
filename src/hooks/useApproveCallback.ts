@@ -1,6 +1,6 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@aliumswap/sdk'
+import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@alium-official/sdk'
 import { useCallback, useMemo } from 'react'
 import { ROUTER_ADDRESS } from '../config/contracts'
 import { useTokenAllowance } from '../data/Allowances'

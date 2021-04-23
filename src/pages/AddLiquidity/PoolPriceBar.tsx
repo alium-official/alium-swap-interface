@@ -1,6 +1,6 @@
 import React from 'react'
-import { Currency, Percent, Price } from '@aliumswap/sdk'
-import { Text } from '@aliumswap/uikit'
+import { Currency, Percent, Price } from '@alium-official/sdk'
+import { Text } from '@alium-official/uikit'
 import styled from 'styled-components'
 import { ONE_BIPS } from 'config/settings'
 import { AutoColumn } from '../../components/Column'

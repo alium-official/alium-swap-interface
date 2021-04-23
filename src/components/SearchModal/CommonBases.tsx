@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text } from '@aliumswap/uikit'
+import { Text } from '@alium-official/uikit'
 
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@aliumswap/sdk'
+import { ChainId, Currency, currencyEquals, ETHER, Token } from '@alium-official/sdk'
 import styled from 'styled-components'
 
 import { SUGGESTED_BASES } from '../../constants'

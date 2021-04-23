@@ -1,4 +1,4 @@
-import { ChainId } from '@aliumswap/sdk'
+import { ChainId } from '@alium-official/sdk'
 
 const VAMPIRE_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: '0xAe3c67D35848D9f9375349e1E5667FF3079C0E55',

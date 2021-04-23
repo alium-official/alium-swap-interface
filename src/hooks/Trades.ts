@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from '@aliumswap/sdk'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from '@alium-official/sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 

@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { CurrencyAmount, JSBI, Token, Trade } from '@aliumswap/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from '@alium-official/sdk'
 import { ArrowDown } from 'react-feather'
-import { CardBody, Button, Text, Flex } from '@aliumswap/uikit'
+import { CardBody, Button, Text, Flex } from '@alium-official/uikit'
 
 import AddressInputPanel from 'components/AddressInputPanel'
 import Card, { GreyCard } from 'components/Card'

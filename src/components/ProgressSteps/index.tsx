@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CheckMarkDoneIcon } from '@aliumswap/uikit'
+import { CheckMarkDoneIcon } from '@alium-official/uikit'
 import { RowBetween } from '../Row'
 import { AutoColumn } from '../Column'
 

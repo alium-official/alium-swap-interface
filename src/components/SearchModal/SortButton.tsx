@@ -1,6 +1,6 @@
 import React from 'react'
 // @ts-ignore
-import { Text, AscendingIcon } from '@aliumswap/uikit'
+import { Text, AscendingIcon } from '@alium-official/uikit'
 
 import styled from 'styled-components'
 import { RowFixed } from '../Row'

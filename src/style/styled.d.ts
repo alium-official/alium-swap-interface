@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { AliumTheme } from '@aliumswap/uikit/dist/theme'
+import { AliumTheme } from '@alium-official/uikit/dist/theme'
 
 declare module 'styled-components' {
   /* eslint-disable @typescript-eslint/no-empty-interface */

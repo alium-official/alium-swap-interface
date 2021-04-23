@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Pair } from '@aliumswap/sdk'
-import { Button, CardBody, Text } from '@aliumswap/uikit'
+import { Pair } from '@alium-official/sdk'
+import { Button, CardBody, Text } from '@alium-official/uikit'
 
 import { Link } from 'react-router-dom'
 import CardNav from 'components/CardNav'

@@ -1,6 +1,6 @@
-import { Trade, TradeType } from '@aliumswap/sdk'
+import { Trade, TradeType } from '@alium-official/sdk'
 import React, { useMemo, useState } from 'react'
-import { Text, Button, SwapIcon } from '@aliumswap/uikit'
+import { Text, Button, SwapIcon } from '@alium-official/uikit'
 
 import { Field } from '../../state/swap/actions'
 import {

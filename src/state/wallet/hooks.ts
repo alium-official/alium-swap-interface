@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@aliumswap/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@alium-official/sdk'
 import { useMemo } from 'react'
 import { ERC20_INTERFACE } from '../../config/interfaces'
 import { useAllTokens } from '../../hooks/Tokens'

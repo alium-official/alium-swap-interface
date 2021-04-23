@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from '@aliumswap/sdk'
+import { Token, TokenAmount } from '@alium-official/sdk'
 import { useMemo } from 'react'
 
 import { useTokenContract } from '../hooks/useContract'

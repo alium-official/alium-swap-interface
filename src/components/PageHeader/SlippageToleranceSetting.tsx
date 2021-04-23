@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, Flex, Input, Text } from '@aliumswap/uikit'
+import { ButtonMenu, ButtonMenuItem, Flex, Input, Text } from '@alium-official/uikit'
 import { useTranslation } from 'react-i18next'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import QuestionHelper from '../QuestionHelper'

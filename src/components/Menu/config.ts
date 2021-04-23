@@ -1,4 +1,4 @@
-import { MenuEntry } from '@aliumswap/uikit'
+import { MenuEntry } from '@alium-official/uikit'
 
 const config: MenuEntry[] = [
   {

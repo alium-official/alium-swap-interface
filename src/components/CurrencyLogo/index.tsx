@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token, ChainId } from '@aliumswap/sdk'
+import { Currency, ETHER, Token, ChainId } from '@alium-official/sdk'
 import { useActiveWeb3React } from 'hooks'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'

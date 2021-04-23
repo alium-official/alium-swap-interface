@@ -1,4 +1,4 @@
-import { CurrencyAmount, ETHER, JSBI } from '@aliumswap/sdk'
+import { CurrencyAmount, ETHER, JSBI } from '@alium-official/sdk'
 import { MIN_ETH } from 'config/settings'
 
 /**

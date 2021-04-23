@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@aliumswap/uikit'
+import { Text } from '@alium-official/uikit'
 
 export const TYPE = {
   main(props: any) {

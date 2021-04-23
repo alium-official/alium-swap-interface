@@ -1,4 +1,4 @@
-import { ChainId, Token, WETH } from '@aliumswap/sdk'
+import { ChainId, Token, WETH } from '@alium-official/sdk'
 
 // a list of tokens by chain
 type ChainTokenList = {

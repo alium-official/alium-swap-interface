@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Trade, TradeType } from '@aliumswap/sdk'
-import { Button, Text, ColoredArrowDownIcon } from '@aliumswap/uikit'
+import { Trade, TradeType } from '@alium-official/sdk'
+import { Button, Text, ColoredArrowDownIcon } from '@alium-official/uikit'
 
 import { AlertTriangle } from 'react-feather'
 

@@ -1,6 +1,6 @@
-import { Token } from '@aliumswap/sdk'
+import { Token } from '@alium-official/sdk'
 import { transparentize } from 'polished'
-import { Button, Text } from '@aliumswap/uikit'
+import { Button, Text } from '@alium-official/uikit'
 
 import React, { useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'

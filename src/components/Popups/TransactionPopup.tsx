@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { PopupCheckIcon, PopupFailIcon } from '@aliumswap/uikit'
+import { PopupCheckIcon, PopupFailIcon } from '@alium-official/uikit'
 import styled, { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { TYPE, ExternalLink } from '../Shared'
