@@ -90,10 +90,10 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
   const balance = useCurrencyBalance(account as string, ETHER)
   const explorerName = getExplorerName(chainId as ChainId)
   const explorerLink = getExplorerLink(chainId as ChainId, account as string, 'address')
-  const useBalance = async () => {
-    const result = await useCurrencyBalance(account as string, ETHER)
-    return result
-  }
+  // const useBalance = async () => {
+  //   const result = await useCurrencyBalance(account as string, ETHER)
+  //   return result
+  // }
 
   // useBalance().then((result)=>console.log(result))
 
@@ -123,7 +123,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
       onTransactionHistoryHandler={transactionsHistoryModal}
       betaText="This is the main version. Press here to switch to Beta."
       betaLink="https://beta.exchange.alium.finance"
-      balanceHook={useBalance}
+      balanceHook={async () => null}
       {...props}
     />
   )
