@@ -1,4 +1,4 @@
-{
+export default {
 	"noWallet": "Không tìm thấy ví tiền Ethereum",
 	"wrongNetwork": "Kết nối mạng không đúng",
 	"switchNetwork": "Vui lòng chuyển sang {{ correctNetwork }}",

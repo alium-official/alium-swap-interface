@@ -61,8 +61,8 @@ const StyledCardBody = styled.div<{ singleBlock?: boolean }>`
     padding: 26px 24px 32px 24px;
 
     ${({ singleBlock }) =>
-      singleBlock &&
-      `
+            singleBlock &&
+            `
       padding: 0; 
       height: 96px;
       flex-direction: row;
@@ -92,15 +92,15 @@ const StyledLiquidity = styled.div`
   justify-content: center;
   margin-bottom: 5px;
   ${(props: StyledLiquidityProps) =>
-    props.found &&
-    `
+          props.found &&
+          `
     justify-content: flex-start;
     border-bottom: 1px solid #F4F5FA;
     padding: 16px;
   `}
   @media screen and (max-width: 414px) {
-    padding-left: 24px;
-  }
+  padding-left: 24px;
+}
 `
 
 const StyledRightSide = styled.div``

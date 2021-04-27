@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "Keine Ethereum-Wallet gefunden",
   "wrongNetwork": "Du bist auf dem falschen Netzwerk.",
   "switchNetwork": "Bitte wechsle zum {{ correctNetwork }}",

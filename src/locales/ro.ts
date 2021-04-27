@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "Niciun portofel Ethereum găsit",
   "wrongNetwork": "Nu ești conectat la rețeaua corectă",
   "switchNetwork": "Conectează-te te rog la {{ correctNetwork }}",

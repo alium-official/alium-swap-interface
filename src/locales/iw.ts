@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "לא נמצא ארנק",
   "wrongNetwork": "נבחרה רשת לא נכונה",
   "switchNetwork": "{{ correctNetwork }} יש צורך לשנות את הרשת ל",

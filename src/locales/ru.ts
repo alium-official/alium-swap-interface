@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "Test",
   "wrongNetwork": "Test",
   "switchNetwork": "Test",

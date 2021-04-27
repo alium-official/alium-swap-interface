@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "未发现以太钱包",
   "wrongNetwork": "网络错误",
   "switchNetwork": "请切换到 {{ correctNetwork }}",

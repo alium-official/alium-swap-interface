@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "未偵測到以太坊錢包",
   "wrongNetwork": "你位在錯誤的網路",
   "switchNetwork": "請切換到 {{ correctNetwork }}",

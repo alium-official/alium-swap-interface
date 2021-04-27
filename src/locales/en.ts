@@ -1,4 +1,4 @@
-{
+export default {
   "noWallet": "No Binance Smart Chain wallet found",
   "wrongNetwork": "You are on the wrong network",
   "switchNetwork": "Please switch to {{ correctNetwork }}",

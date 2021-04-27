@@ -76,19 +76,19 @@ const StyledUIKitText = styled(UIKitText)`
 `
 
 export default function AddLiquidity({
-  match: {
-    params: { currencyIdA, currencyIdB },
-  },
-  history,
-}: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
+                                       match: {
+                                         params: { currencyIdA, currencyIdB },
+                                       },
+                                       history,
+                                     }: RouteComponentProps<{ currencyIdA?: string; currencyIdB?: string }>) {
   const { account, chainId, library } = useActiveWeb3React()
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
 
   const oneCurrencyIsWETH = Boolean(
     chainId &&
-      ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
-        (currencyB && currencyEquals(currencyB, WETH[chainId])))
+    ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
+      (currencyB && currencyEquals(currencyB, WETH[chainId])))
   )
   const expertMode = useIsExpertMode()
 
@@ -449,40 +449,40 @@ export default function AddLiquidity({
                     approvalA === ApprovalState.PENDING ||
                     approvalB === ApprovalState.NOT_APPROVED ||
                     approvalB === ApprovalState.PENDING) &&
-                    isValid && (
-                      <RowBetween>
-                        {approvalA !== ApprovalState.APPROVED && currencies[Field.CURRENCY_A]?.symbol && (
-                          <Button
-                            onClick={approveACallback}
-                            disabled={approvalA !== ApprovalState.NOT_APPROVED || approvalSubmittedA}
-                            style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
-                          >
-                            {approvalA === ApprovalState.PENDING || approvalSubmittedA ? (
-                              <AutoRow gap="6px" justify="center">
-                                Approving {currencies[Field.CURRENCY_A]?.symbol} <Loader stroke="white" />
-                              </AutoRow>
-                            ) : (
-                              `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
-                            )}
-                          </Button>
-                        )}
-                        {approvalB !== ApprovalState.APPROVED && currencies[Field.CURRENCY_B]?.symbol && (
-                          <Button
-                            onClick={approveBCallback}
-                            disabled={approvalB !== ApprovalState.NOT_APPROVED || approvalSubmittedB}
-                            style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
-                          >
-                            {approvalB === ApprovalState.PENDING || approvalSubmittedB ? (
-                              <AutoRow gap="6px" justify="center">
-                                Approving {currencies[Field.CURRENCY_B]?.symbol} <Loader stroke="white" />
-                              </AutoRow>
-                            ) : (
-                              `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
-                            )}
-                          </Button>
-                        )}
-                      </RowBetween>
-                    )}
+                  isValid && (
+                    <RowBetween>
+                      {approvalA !== ApprovalState.APPROVED && currencies[Field.CURRENCY_A]?.symbol && (
+                        <Button
+                          onClick={approveACallback}
+                          disabled={approvalA !== ApprovalState.NOT_APPROVED || approvalSubmittedA}
+                          style={{ width: approvalB !== ApprovalState.APPROVED ? '48%' : '100%' }}
+                        >
+                          {approvalA === ApprovalState.PENDING || approvalSubmittedA ? (
+                            <AutoRow gap="6px" justify="center">
+                              Approving {currencies[Field.CURRENCY_A]?.symbol} <Loader stroke="white" />
+                            </AutoRow>
+                          ) : (
+                            `Approve ${currencies[Field.CURRENCY_A]?.symbol}`
+                          )}
+                        </Button>
+                      )}
+                      {approvalB !== ApprovalState.APPROVED && currencies[Field.CURRENCY_B]?.symbol && (
+                        <Button
+                          onClick={approveBCallback}
+                          disabled={approvalB !== ApprovalState.NOT_APPROVED || approvalSubmittedB}
+                          style={{ width: approvalA !== ApprovalState.APPROVED ? '48%' : '100%' }}
+                        >
+                          {approvalB === ApprovalState.PENDING || approvalSubmittedB ? (
+                            <AutoRow gap="6px" justify="center">
+                              Approving {currencies[Field.CURRENCY_B]?.symbol} <Loader stroke="white" />
+                            </AutoRow>
+                          ) : (
+                            `Approve ${currencies[Field.CURRENCY_B]?.symbol}`
+                          )}
+                        </Button>
+                      )}
+                    </RowBetween>
+                  )}
                   <StyledButton
                     onClick={() => {
                       if (expertMode) {
