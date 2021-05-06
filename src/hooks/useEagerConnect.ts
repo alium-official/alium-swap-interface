@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { connectorLocalStorageKey, ConnectorNames } from '@alium-official/uikit'
+import { ConnectorNames, getChainId, getConnectorId } from '@alium-official/uikit'
 import useAuth from 'hooks/useAuth'
 
 const _binanceChainListener = async () =>
@@ -20,11 +20,10 @@ const useEagerConnect = () => {
   const { login } = useAuth()
 
   useEffect(() => {
-    const connectorId = window.localStorage.getItem(connectorLocalStorageKey) as ConnectorNames
-    const params = new URLSearchParams(window.location.search)
-    const chainId = params.get('network')
+    const connectorId = getConnectorId()
+    const chainId = getChainId()
 
-    if (connectorId === ConnectorNames.BSC && (chainId === '128' || chainId === '256')) {
+    if (connectorId === ConnectorNames.BSC && (chainId === 128 || chainId === 256)) {
       return
     }
 

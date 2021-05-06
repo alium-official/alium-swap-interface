@@ -9,7 +9,7 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { ConnectorNames, connectorLocalStorageKey } from '@alium-official/uikit'
+import { ConnectorNames, removeConnectorId } from '@alium-official/uikit'
 import useToast from 'state/hooks'
 import { getConnectorsByName } from '../utils/web3React'
 import { setupNetwork } from '../utils/wallet'
@@ -33,7 +33,7 @@ const useAuth = () => {
               }
             }
           } else {
-            window.localStorage.removeItem(connectorLocalStorageKey)
+            removeConnectorId()
             if (error instanceof NoEthereumProviderError || error instanceof NoBscProviderError) {
               toastError('Provider Error', 'No provider was found')
             } else if (

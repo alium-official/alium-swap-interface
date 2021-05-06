@@ -3,6 +3,7 @@ import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists'
 // eslint-disable-next-line import/no-unresolved
 import { TokenList } from '@uniswap/token-lists/dist/types'
 import DEFAULT_LIST from 'config/tokens'
+import { getChainId } from '@alium-official/uikit'
 import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
 import { updateVersion } from '../global/actions'
 import { acceptListUpdate, addList, fetchTokenList, removeList, selectList } from './actions'
@@ -16,7 +17,8 @@ export interface ListsState {
       readonly error: string | null
     }
   }
-  // this contains the default list of lists from the last time the updateVersion was called, i.e. the app was reloaded
+  // this contains the default list of lists from the last time
+  // the updateVersion was called, i.e. the app was reloaded
   readonly lastInitializedDefaultListOfLists?: string[]
   readonly selectedListUrl: string | undefined
 }
@@ -30,8 +32,7 @@ const NEW_LIST_STATE: ListsState['byUrl'][string] = {
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
 
-const params = new URLSearchParams(window.location.search)
-const id = params.get('network')
+const chainId = getChainId()
 
 const initialState: ListsState = {
   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
@@ -42,7 +43,7 @@ const initialState: ListsState = {
     }, {}),
     [DEFAULT_TOKEN_LIST_URL]: {
       error: null,
-      current: DEFAULT_LIST[id || (process.env.REACT_APP_CHAIN_ID as string)],
+      current: DEFAULT_LIST[chainId],
       loadingRequestId: null,
       pendingUpdate: null,
     },

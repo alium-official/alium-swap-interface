@@ -2,15 +2,12 @@ import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
-
 import getNodeUrl from 'utils/getRpcUrl'
+import { getChainId } from '@alium-official/uikit'
 import { NetworkConnector } from './NetworkConnector'
 import { BscConnector } from './bsc/bscConnector'
 
-const params = new URLSearchParams(window.location.search)
-const id = params.get('network')
-
-const chainId: any = id || parseInt(process.env.REACT_APP_CHAIN_ID as string, 10)
+const chainId = getChainId()
 const NETWORK_URL = getNodeUrl(chainId)
 
 export const NETWORK_CHAIN_ID: number = chainId
@@ -24,6 +21,7 @@ export const network = new NetworkConnector({
 })
 
 let networkLibrary: Web3Provider | undefined
+
 export function getNetworkLibrary(): Web3Provider {
   // eslint-disable-next-line no-return-assign
   return (networkLibrary = networkLibrary ?? new Web3Provider(network.provider as any))
