@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { FC, useCallback, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { splitSignature } from '@ethersproject/bytes'
 import { Contract } from '@ethersproject/contracts'
@@ -7,12 +7,12 @@ import { Currency, currencyEquals, ETHER, Percent, WETH, ChainId } from '@alium-
 import { AddIcon, Button, Flex, Text } from '@alium-official/uikit'
 
 import { ArrowDown, ChevronDown } from 'react-feather'
-import { RouteComponentProps } from 'react-router'
 
 import { BigNumber } from '@ethersproject/bignumber'
 import { ROUTER_ADDRESS } from 'config/contracts'
 
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { useHistory, useParams } from 'react-router-dom'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -78,12 +78,9 @@ const StyledTextAddIcon = styled.div`
   }
 `
 
-export default function RemoveLiquidity({
-  history,
-  match: {
-    params: { currencyIdA, currencyIdB },
-  },
-}: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+export const RemoveLiquidity: FC = () => {
+  const history = useHistory()
+  const { currencyIdA, currencyIdB } = useParams<{ currencyIdA: string; currencyIdB: string }>()
   const [currencyA, currencyB] = [useCurrency(currencyIdA) ?? undefined, useCurrency(currencyIdB) ?? undefined]
   const { account, chainId, library } = useActiveWeb3React()
   const [tokenA, tokenB] = useMemo(() => [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)], [
@@ -135,7 +132,8 @@ export default function RemoveLiquidity({
     parsedAmounts[Field.LIQUIDITY],
     chainId && ROUTER_ADDRESS[chainId]
   )
-  async function onAttemptToApprove() {
+
+  const onAttemptToApprove = async () => {
     if (!pairContract || !pair || !library) throw new Error('missing dependencies')
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
     if (!liquidityAmount) throw new Error('missing liquidity amount')
@@ -214,7 +212,8 @@ export default function RemoveLiquidity({
 
   // tx sending
   const addTransaction = useTransactionAdder()
-  async function onRemove() {
+
+  const onRemove = async () => {
     if (!chainId || !library || !account) throw new Error('missing dependencies')
     const { [Field.CURRENCY_A]: currencyAmountA, [Field.CURRENCY_B]: currencyAmountB } = parsedAmounts
     if (!currencyAmountA || !currencyAmountB) {
@@ -350,7 +349,7 @@ export default function RemoveLiquidity({
     }
   }
 
-  function modalHeader() {
+  const modalHeader = async () => {
     return (
       <AutoColumn gap="md" style={{ marginTop: '0' }}>
         <RowBetween
@@ -400,7 +399,7 @@ export default function RemoveLiquidity({
     padding: 6px 8px;
   `
 
-  function modalBottom() {
+  const modalBottom = async () => {
     return (
       <>
         <RowBetween style={{ padding: '6px 8px' }}>

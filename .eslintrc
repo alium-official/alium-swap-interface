@@ -28,6 +28,7 @@
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "radix": 0,
+    "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
     "no-case-declarations": 0,
     "no-await-in-loop": 0,

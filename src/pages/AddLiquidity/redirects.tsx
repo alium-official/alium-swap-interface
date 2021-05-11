@@ -1,34 +1,26 @@
 import React from 'react'
-import { Redirect, RouteComponentProps } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 import AddLiquidity from './index'
 
-export function RedirectToAddLiquidity() {
+export const RedirectToAddLiquidity = () => {
   return <Redirect to="/add/" />
 }
 
 const OLD_PATH_STRUCTURE = /^(0x[a-fA-F0-9]{40})-(0x[a-fA-F0-9]{40})$/
-export function RedirectOldAddLiquidityPathStructure(props: RouteComponentProps<{ currencyIdA: string }>) {
-  const {
-    match: {
-      params: { currencyIdA },
-    },
-  } = props
+
+export const RedirectOldAddLiquidityPathStructure = () => {
+  const { currencyIdA } = useParams<{ currencyIdA: string }>()
   const match = currencyIdA.match(OLD_PATH_STRUCTURE)
   if (match?.length) {
     return <Redirect to={`/add/${match[1]}/${match[2]}`} />
   }
-
-  return <AddLiquidity {...props} />
+  return <AddLiquidity currencyIdA={currencyIdA} />
 }
 
-export function RedirectDuplicateTokenIds(props: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
-  const {
-    match: {
-      params: { currencyIdA, currencyIdB },
-    },
-  } = props
+export const RedirectDuplicateTokenIds = () => {
+  const { currencyIdA, currencyIdB } = useParams<{ currencyIdA: string; currencyIdB: string }>()
   if (currencyIdA.toLowerCase() === currencyIdB.toLowerCase()) {
     return <Redirect to={`/add/${currencyIdA}`} />
   }
-  return <AddLiquidity {...props} />
+  return <AddLiquidity currencyIdA={currencyIdA} currencyIdB={currencyIdB} />
 }
