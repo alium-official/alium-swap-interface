@@ -9,10 +9,11 @@
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "dotenv -e .env.production react-scripts start",
+    "start:dev": "dotenv -e .env.development react-scripts start",
     "build": "dotenv -e .env.production react-scripts build",
     "build:dev": "dotenv -e .env.development react-scripts build",
-    "serve:dev": "serve -s build -l 3000",
+    "serve:3000": "serve -s build -l 3000",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
@@ -22,7 +23,7 @@
   },
   "dependencies": {
     "@alium-official/sdk": "^1.1.11",
-    "@alium-official/uikit": "^0.11.51",
+    "@alium-official/uikit": "^0.11.52",
     "@binance-chain/bsc-connector": "^1.0.3",
     "@crowdin/crowdin-api-client": "^1.10.6",
     "@ethersproject/experimental": "^5.1.2",
@@ -54,7 +55,7 @@
     "ajv": "^6.12.6",
     "cids": "^1.1.6",
     "copy-to-clipboard": "^3.3.1",
-    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0",
     "ethers": "^5.1.4",
     "i18next": "^20.2.2",
     "i18next-browser-languagedetector": "^6.1.0",
