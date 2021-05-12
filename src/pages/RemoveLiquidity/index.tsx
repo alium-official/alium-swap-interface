@@ -29,7 +29,7 @@ import { usePairContract } from '../../hooks/useContract'
 
 import { useTransactionAdder } from '../../state/transactions/hooks'
 import { StyledInternalLink } from '../../components/Shared'
-import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from '../../utils'
+import { calculateGasMargin, calculateGasPrice, calculateSlippageAmount, getRouterContract } from '../../utils'
 import { currencyId } from '../../utils/currencyId'
 import useDebouncedChangeHandler from '../../utils/useDebouncedChangeHandler'
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
@@ -326,9 +326,12 @@ export const RemoveLiquidity: FC = () => {
       const methodName = methodNames[indexOfSuccessfulEstimation]
       const safeGasEstimate = safeGasEstimates[indexOfSuccessfulEstimation]
 
+      const gasPrice = await calculateGasPrice(router.provider)
+
       setAttemptingTxn(true)
       await router[methodName](...args, {
         gasLimit: safeGasEstimate,
+        gasPrice,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)

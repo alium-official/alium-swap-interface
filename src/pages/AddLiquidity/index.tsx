@@ -26,7 +26,7 @@ import { useDerivedMintInfo, useMintActionHandlers, useMintState } from 'state/m
 
 import { useTransactionAdder } from 'state/transactions/hooks'
 import { useIsExpertMode, useUserDeadline, useUserSlippageTolerance } from 'state/user/hooks'
-import { calculateGasMargin, calculateSlippageAmount, getRouterContract } from 'utils'
+import { calculateGasMargin, calculateGasPrice, calculateSlippageAmount, getRouterContract } from 'utils'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { currencyId } from 'utils/currencyId'
@@ -227,6 +227,8 @@ const AddLiquidity: React.FC<props> = ({ currencyIdA, currencyIdB }) => {
       value = null
     }
 
+    const gasPrice = await calculateGasPrice(router.provider)
+
     setAttemptingTxn(true)
     // const aa = await estimate(...args, value ? { value } : {})
     await estimate(...args, value ? { value } : {})
@@ -234,6 +236,7 @@ const AddLiquidity: React.FC<props> = ({ currencyIdA, currencyIdB }) => {
         method(...args, {
           ...(value ? { value } : {}),
           gasLimit: calculateGasMargin(estimatedGasLimit),
+          gasPrice,
         }).then((response) => {
           setAttemptingTxn(false)
 
