@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu as UikitMenu, MenuEntry, useModal } from '@alium-official/uikit'
+import { externalLinks, Menu as UikitMenu, MenuEntry, useModal } from '@alium-official/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'react-i18next'
 import useTheme from 'hooks/useTheme'
@@ -69,7 +69,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         },
         {
           label: t('mainMenu.github'),
-          href: 'https://github.com/Aliumswap',
+          href: externalLinks.github,
         },
         {
           label: t('mainMenu.docs'),
@@ -77,7 +77,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         },
         {
           label: t('mainMenu.blog'),
-          href: 'https://medium.com/@aliumswap',
+          href: externalLinks.medium,
         },
       ],
     },
